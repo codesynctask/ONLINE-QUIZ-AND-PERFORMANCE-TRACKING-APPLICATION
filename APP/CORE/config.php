@@ -1,6 +1,6 @@
 <?php
 
-define('ROOT', 'http://localhost/PHP-MVC/');
+define('ROOT', 'http://localhost/ONLINE QUIZ AND PERFORMANCE TRACKING APPLICATION');
 define('APP_NAME', 'ONLINE QUIZ AND PERFORMANCE TRACKING APPLICATION');
 
 define('DBHOST', 'localhost');

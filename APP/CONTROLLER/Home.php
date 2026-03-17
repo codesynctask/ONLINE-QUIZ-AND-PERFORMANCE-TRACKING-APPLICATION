@@ -7,7 +7,8 @@ class Home extends Controller
         $UserModel = new Users();
 
 
-        $this->json_response($UserModel->all());
+        // $this->json_response($UserModel->all());
+        $this->view("home");
     }
 }
 
