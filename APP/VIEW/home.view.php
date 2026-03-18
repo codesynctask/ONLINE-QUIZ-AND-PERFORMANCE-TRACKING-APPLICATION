@@ -201,8 +201,7 @@
 
             <!-- About -->
             <div>
-                <img class="size-[100px] " src="<?= ROOT ?>\PUBLIC\ASSETS\imgs\dark-logo.png" alt="Quiz Tracker Logo"
-                <img src="" alt="">
+                <img class="size-[100px] " src="<?= ROOT ?>\PUBLIC\ASSETS\imgs\dark-logo.png" alt="Quiz Tracker Logo">
                 <p class="text-sm leading-relaxed">
                     Test your knowledge with interactive quizzes.
                     Improve skills, track progress, and challenge yourself daily.
