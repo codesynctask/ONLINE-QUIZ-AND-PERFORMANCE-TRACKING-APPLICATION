@@ -1,0 +1,6 @@
+@keyframes dot-ring-glow {
+    100%{
+        transform: scale(2);
+        opacity: 1;
+    }
+}

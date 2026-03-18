@@ -1,0 +1,18 @@
+.circle{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--orange);
+    
+}
+.circle::after{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 1px solid var(--orange);
+    animation: dot-ring-glow 1s ease-in-out infinite;
+    opacity: 0;
+}

@@ -12,20 +12,15 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css" rel="stylesheet" />
     <!-- Styles -->
     <link rel="stylesheet" href="<?= ROOT ?>\PUBLIC\ASSETS\styles\main.css">
+    <link rel="stylesheet" href="<?= ROOT ?>\PUBLIC\ASSETS\styles\style.css">
+    <link rel="stylesheet" href="<?= ROOT ?>\PUBLIC\ASSETS\styles\animation.css">
     <link rel="stylesheet" href="<?= ROOT ?>\PUBLIC\ASSETS\styles\utility.css">
     <link rel="stylesheet" href="<?= ROOT ?>\PUBLIC\ASSETS\styles\component.css">
-    <style>
-        body {
-            height: 300vh;
-            position: relative;
-
-        }
-    </style>
 </head>
 
-<body>
+<body class="relative">
     <header class="fixed w-[100vw]">
-        <nav class=" relative border-black flex justify-between items-center gap-[4vw] p-2 px-[6vw]">
+        <nav class=" backdrop-filter backdrop-blur-sm  flex justify-between items-center gap-[4vw] p-2 px-[6vw]">
             <img class="size-[70px] " src="<?= ROOT ?>\PUBLIC\ASSETS\imgs\logo.png" alt="Quiz Tracker Logo"
                 class="logo">
             <ul class="xcenter  flex justify-between items-center gap-10 p-4">
@@ -53,7 +48,7 @@
 
             <div class="auth-buttons flex justify-between items-center gap-2 p-2 ">
                 <a href="<?= ROOT ?>\public\auth\register"
-                    class="flex gap-2 justify-center item-center btn hover:scale-105"><i class="ri-user-add-fill"></i>
+                    class="flex gap-2 justify-center item-center bg-white btn hover:scale-105"><i class="ri-user-add-fill"></i>
                     Register</a>
                 <a href="<?= ROOT ?>\public\auth\login"
                     class="flex gap-2 justify-center item-center btn btn-primary hover:scale-105"><i
@@ -62,7 +57,80 @@
         </nav>
 </header>
 
-    <section  class="pt-20 min-h-screen">
+    <section id="main"  class="py-4 px-[5vw] min-h-screen ">
+        <section id="hero" class="h-fit min-h-[95vh]  flex justify-between items-center gap-10 ">
+            <div class="h-fit w-3/5 left bg-white p-4">
+                <h6 class="border-2 border-black flex justify-center items-center gap-3 badge text-sm border-black rounded-full p-3 w-fit"><div class="circle relative size-[10px] rounded-full"></div>ONLINE QUIZ AND PERFORMANCE TRACKING APPLICATION </h6>
+                <h1 class="text-[5vw] font-bold">Where knowledge meets <span style="font-family: cursive;" class="text-orange-600 font-cursive">measurable</span> progress</h1>
+                <p class="text-black ">Quiz is a structured online quiz platform built for academic institutions. Students take quizzes, track performance, and compete on a shared leaderboard — all in one secure, role-based system.</p>
+            </div>
+            <div class="h-[60vh] w-2/5 right bg-blue-500"></div>
+        </section>
+
+        <section style="background-color: var(--orange);" id="stats" class=" my-[5vh] flex justify-center item-center p-4 text-red-200">
+            <div class="stat-cont p-4 flex justify-center items-center gap-4 flex-col ">
+                <h2 class="text-[4vw] font-bold mb-[-10px] text-white">1300+</h2>
+                <h5>Registered Students</h5>
+            </div>
+            <div class="stat-cont p-4 flex justify-center items-center gap-4 flex-col ">
+                <h2 class="text-[4vw] font-bold mb-[-10px] text-white ">1300+</h2>
+                <h5>Registered Students</h5>
+            </div>
+            <div class="stat-cont p-4 flex justify-center items-center gap-4 flex-col ">
+                <h2 class="text-[4vw] font-bold mb-[-10px] text-white">1300+</h2>
+                <h5>Registered Students</h5>
+            </div>
+            <div class="stat-cont p-4 flex justify-center items-center gap-4 flex-col ">
+                <h2 class="text-[4vw] font-bold mb-[-10px] text-white">1300+</h2>
+                <h5>Registered Students</h5>
+            </div>
+        </section>
+
+
+        <section id="features" class="mt-[15vh] p-4">
+            <h3 id="features" class="uppercase">platform featurs</h3>
+            <h1 class="text-[3em]">Everything a modern assessment platform needs</h1>
+            <p>Designed around three roles — student, faculty, and administrator — so every user has exactly the tools they need and nothing more.</p>
+            <div class="feature-cont grid grid-cols-3 gap-2 p-2 mt-4">
+                <div class="feature border-black border h-[35vh] min-h-fit rounded-lg p-8">
+                    <i class="ri-stack-fill text-orange-600 text-[2.5vw]"></i>
+                    <h4 class="text-[1.5vw]">Role-based access control</h4>
+                    <p>Admins, faculty, and students each see only the features relevant to their role. Secure from the ground up using PHP session authentication.</p>
+                </div>
+                <div class="feature border-black border h-[35vh] min-h-fit rounded-lg p-8">
+                    <i class="ri-send-plane-fill text-orange-600 text-[2.5vw]"></i>
+                    <h4 class="text-[1.5vw]">Live question fetching</h4>
+                    <p>Questions are sourced from the Open Trivia Database API across 15+ categories, refreshed at the start of every new quiz session.</p>
+                </div>
+                <div class="feature border-black border h-[35vh] min-h-fit rounded-lg p-8">
+                    <i class="ri-file-paper-2-fill text-orange-600 text-[2.5vw]"></i>
+                    <h4 class="text-[1.5vw]">Instant results and scoring</h4>
+                    <p>Answers are evaluated automatically the moment a quiz is submitted. Scores, percentages, and correct answers are displayed immediately.</p>
+                </div>
+                <div class="feature border-black border h-[35vh] min-h-fit rounded-lg p-8">
+                    <i class="ri-bar-chart-2-fill text-orange-600 text-[2.5vw]"></i>
+                    <h4 class="text-[1.5vw]">Dynamic leaderboard</h4>
+                    <p>Rankings are computed in real time from the results database. No stale data — every new quiz submission updates the leaderboard instantly.</p>
+                </div>
+                <div class="feature border-black border h-[35vh] min-h-fit rounded-lg p-8">
+                    <i class="ri-file-chart-line text-orange-600 text-[2.5vw]"></i>
+                    <h4 class="text-[1.5vw]">Faculty performance reports</h4>
+                    <p>Faculty can view per-student history, category-wise averages, and identify at-risk students without accessing any administrative controls.</p>
+                </div>
+                <div class="feature border-black border h-[35vh] min-h-fit rounded-lg p-8">
+                    <i class="ri-syringe-fill text-orange-600 text-[2.5vw]"></i>
+                    <h4 class="text-[1.5vw]">SQL injection protection</h4>
+                    <p>All database operations use PHP PDO with prepared statements, ensuring student records and credentials are fully protected from injection attacks.</p>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="how-it-works" class="mt-[15vh] p-4">
+            <h3 id="features" class="uppercase">How it works</h3>
+            <h1 class="text-[3em]">From login to leaderboard in four steps</h1>
+            <p>The entire quiz lifecycle — authentication, question delivery, evaluation, and ranking — is handled automatically by the platform.</p>
+        </section>
 
 
     </section>
