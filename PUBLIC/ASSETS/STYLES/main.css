@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Carattere&display=swap');
+
 :root {
   /* Brand Palette */
   --orange: #FF4D00;
@@ -36,6 +39,18 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--text-primary);
   font-weight: 700;
   margin-bottom: 1rem;
+}
+
+h1{
+  font-family: "Archivo Black", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.act-cursive{
+  font-family: "Carattere", cursive;
+  font-weight: 400;
+  font-style: normal;
 }
 
 p {
