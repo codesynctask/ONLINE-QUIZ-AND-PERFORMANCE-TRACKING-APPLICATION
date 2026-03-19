@@ -18,11 +18,12 @@
     <link rel="stylesheet" href="<?= ROOT ?>\PUBLIC\ASSETS\styles\component.css">
 </head>
 
-<body>
+<body class="text-[clamp(0.8rem,1.3vw,0.9rem)]">
     <section class="mt-[2vh] px-[10vw] p-4 flex flex-col  justify-center items-center">
-        <h3 class="uppercase">Authentication</h3>
-        <h1 class="text-[3em] flex justify-center items-center gap-4">Create Your <img class="size-[100px] " src="<?= ROOT ?>\PUBLIC\ASSETS\imgs\logo.png" alt="Quiz Tracker Logo"> Account</h1>
-        <form method="post" action="<?= ROOT ?>/PUBLIC/auth/register" class="relative border-2 pb-8 bg-white border-black flex flex-col  gap-2 p-4 rounded-lg mt-4">
+        <h3 class="uppercase text-[clamp(0.8em,1.5vw,1em)]">Authentication</h3>
+        <h1 class="text-center mb-[-1em] text-[clamp(2em,3.4vw,2.8em)] flex justify-center items-center gap-4">Create Your</h1>
+        <h1 class="text-center mb-[-1em] text-[clamp(2em,3.4vw,2.8em)] flex justify-center items-center gap-4"><img class="size-[clamp(3em,5vw,7vw)] " src="<?= ROOT ?>\PUBLIC\ASSETS\imgs\logo.png" alt="Quiz Tracker Logo"> Account</h1>
+        <form method="post" action="<?= ROOT ?>/PUBLIC/auth/register" class="mt-4 relative border-2 pb-8 bg-white border-black flex flex-col  gap-2 p-4 rounded-lg mt-4">
             <a href="<?=ROOT?>/public/home" class=" hover:text-orange-600"><i class="ri-close-circle-line absolute text-[1.5em] right-2 top-0 z-50"></i></a>
             <div class="fields p-2 relative rounded-lg">
                 <label class="uppercase font-bold" for="username"><i class="ri-edit-box-fill"></i> Username :</label>
