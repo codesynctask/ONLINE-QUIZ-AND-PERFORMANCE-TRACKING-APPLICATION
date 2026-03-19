@@ -18,7 +18,6 @@ class Auth extends Controller
         if (
           !(isset($_POST["username"]) &&
             isset($_POST["password"]) &&
-            isset($_POST["role"])     &&
             isset($_POST["fullname"]))
         ) {
             $this->json_response(["msg" => "missing fields"]);
@@ -38,7 +37,7 @@ class Auth extends Controller
         $newUser = [
             "username"=> $_POST["username"],
             "password"=> password_hash($_POST["password"], PASSWORD_BCRYPT),
-            "role"=> $_POST["role"],
+            "role"=> "student", //default role
             "fullname"=> $_POST["fullname"],
         ];
         $users->create($newUser);

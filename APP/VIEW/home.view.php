@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Quiz. - Online Quiz & performance tracking application</title>
     <!-- Favicons -->
     <link rel="shortcut icon" href="<?= ROOT ?>\PUBLIC\ASSETS\imgs\favicon.png" type="image/x-icon">
     <!-- CDN -->
@@ -56,12 +56,12 @@
 
             <div class="auth-buttons flex justify-between items-center gap-2 p-2 ">
                 <a 
-                    href="<?= ROOT ?>\public\auth\register"
+                    href="<?= ROOT ?>\public\page\register"
                     class="flex gap-2 justify-center item-center bg-white btn hover:scale-105">
                     <i class="ri-user-add-fill"></i> Register 
                 </a>
                 <a 
-                    href="<?= ROOT ?>\public\auth\login"
+                    href="<?= ROOT ?>\public\page\login"
                     class="flex gap-2 justify-center item-center btn btn-primary hover:scale-105">
                     <i class="ri-login-circle-fill"></i> Login
                 </a>
@@ -184,8 +184,8 @@
             <h1 class="text-[4vw] text-white text-center ">Ready to begin your assessment journey?</h1>
             <p class="text-[1.1vw] text-white ">Log in with your institutional credentials to access your quizzes, track your progress, and see where you stand on the leaderboard.</p>
             <div class="p-4 flex justify-center items-center gap-4">
-                <button class="btn w-fit bg-white"><i class="ri-login-circle-fill text-lg"></i> Login to Quiz</button>
-                <button class="btn w-fit bg-white"><i class="ri-user-settings-fill text-lg"></i> Contact Admin</button>
+                <a href="<?= ROOT ?>\public\page\login" class="btn w-fit bg-white"><i class="ri-login-circle-fill text-lg"></i> Login to Quiz</a>
+                <a href="" class="btn w-fit bg-white"><i class="ri-user-settings-fill text-lg"></i> Contact Admin</a>
             </div>
         </section>
 
