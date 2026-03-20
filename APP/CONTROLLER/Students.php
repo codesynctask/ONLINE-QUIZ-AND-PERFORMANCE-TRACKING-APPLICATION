@@ -6,6 +6,14 @@ class Students extends Controller
     {
         $this->view("students/home");
     }
+    public function result()
+    {
+        $this->view("students/result");
+    }
+    public function leaderboard()
+    {
+        $this->view("students/leaderboard");
+    }
 }
 
 
