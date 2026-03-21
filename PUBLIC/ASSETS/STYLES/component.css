@@ -13,3 +13,13 @@
   background-color: var(--orange);
   color: var(--btn-text);
 }
+
+
+.radio-elm{
+  display: none;
+}
+.radio-elm:checked + label{
+  background-color: var(--orange);
+  color: white;
+
+}
