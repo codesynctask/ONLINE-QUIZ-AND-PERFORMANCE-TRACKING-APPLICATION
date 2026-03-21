@@ -1,0 +1,102 @@
+[
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Science: Computers",
+    "question": "Which of these is the name for the failed key escrow device introduced by the National Security Agency in 1993?",
+    "correct_answer": "Clipper Chip",
+    "incorrect_answers": ["Enigma Machine", "Skipjack", "Nautilus"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Science: Computers",
+    "question": "When was the programming language &quot;C#&quot; released?",
+    "correct_answer": "2000",
+    "incorrect_answers": ["1998", "1999", "2001"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Science: Computers",
+    "question": "In programming, what do you call functions with the same name but different implementations?",
+    "correct_answer": "Overloading",
+    "incorrect_answers": ["Overriding", "Abstracting", "Inheriting"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Science: Computers",
+    "question": "What was the first commerically available computer processor?",
+    "correct_answer": "Intel 4004",
+    "incorrect_answers": ["Intel 486SX", "TMS 1000", "AMD AM386"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Science: Computers",
+    "question": "What does &quot;LCD&quot; stand for?",
+    "correct_answer": "Liquid Crystal Display",
+    "incorrect_answers": [
+      "Language Control Design",
+      "Last Common Difference",
+      "Long Continuous Design"
+    ]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Science: Computers",
+    "question": "On which day did the World Wide Web go online?",
+    "correct_answer": "December 20, 1990",
+    "incorrect_answers": [
+      "December 17, 1996",
+      "November 12, 1990",
+      "November 24, 1995"
+    ]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Science: Computers",
+    "question": "Which of these people was NOT a founder of Apple Inc?",
+    "correct_answer": "Jonathan Ive",
+    "incorrect_answers": ["Steve Jobs", "Ronald Wayne", "Steve Wozniak"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Science: Computers",
+    "question": "In HTML, which non-standard tag used to be be used to make elements scroll across the viewport?",
+    "correct_answer": "&lt;marquee&gt;&lt;/marquee&gt;",
+    "incorrect_answers": [
+      "&lt;scroll&gt;&lt;/scroll&gt;",
+      "&lt;move&gt;&lt;/move&gt;",
+      "&lt;slide&gt;&lt;/slide&gt;"
+    ]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Science: Computers",
+    "question": "The computer OEM manufacturer Clevo, known for its Sager notebook line, is based in which country?",
+    "correct_answer": "Taiwan",
+    "incorrect_answers": [
+      "United States",
+      "Germany",
+      "China (People&#039;s Republic of)"
+    ]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Science: Computers",
+    "question": "In computing terms, typically what does CLI stand for?",
+    "correct_answer": "Command Line Interface",
+    "incorrect_answers": [
+      "Common Language Input",
+      "Control Line Interface",
+      "Common Language Interface"
+    ]
+  }
+]

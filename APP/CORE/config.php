@@ -1,6 +1,10 @@
 <?php
 
-define('ROOT', 'http://localhost/ONLINE QUIZ AND PERFORMANCE TRACKING APPLICATION');
+// URL 
+define('ROOT', 'http://localhost/ONLINE-QUIZ-AND-PERFORMANCE-TRACKING-APPLICATION');
+// ROOT FILE PATH
+define('FILE_ROOT', dirname(__DIR__));
+
 define('APP_NAME', 'ONLINE QUIZ AND PERFORMANCE TRACKING APPLICATION');
 
 define('DBHOST', 'localhost');
