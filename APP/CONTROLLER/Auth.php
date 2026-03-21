@@ -42,7 +42,8 @@ class Auth extends Controller
         ];
         $users->create($newUser);
         
-        $this->json_response(["msg" => "User Created","newUserData"=>$newUser]);
+        header("Location: ".ROOT."/public/page/login");
+        exit();
     }
         
 
@@ -71,7 +72,7 @@ class Auth extends Controller
         }
         
         $usersPassword = $usersData["password"]; 
-        $usersusername = $usersData["username"];
+        $user_id = $usersData["user_id"];
 
         if (!password_verify($password, $usersPassword)) {
             $this->json_response(["msg" => "Invalid credentials"], 401);
@@ -79,13 +80,17 @@ class Auth extends Controller
         }
 
         // 3. Generating JWT token and send as cookie
-        $token = AuthMiddleware::generate($usersData["user_id"]);
+        $token = AuthMiddleware::generate($user_id);
         $isJwtCookieSet = Cookie::set("jwt_token",$token, 3600, "/", "", true,true);
         if ($isJwtCookieSet) {
-            $this->json_response([
-                "msg" => "JWT token sent to client device"
-            ],200);
+            AuthMiddleware::handle();
         }
+    }
+
+    public function logout(){
+        Cookie::delete("jwt_token");
+        header("Location: ".ROOT."/public/");
+        exit();
     }
 
     /*

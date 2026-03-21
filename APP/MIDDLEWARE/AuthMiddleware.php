@@ -20,33 +20,32 @@ class AuthMiddleware
 
     public static function handle()
     {
-        $headers = getallheaders();
-
         $token = Cookie::get("jwt_token");
 
         if (!$token) {
-            self::unauthorized("Token missing");
+            self::unauthorized();
         }
-
 
         try {
-            $decoded = JWT::decode($token, new Key(JWT_SECRET, 'HS256'));
+            $decoded = JWT::decode($token, new Key(JWT_SECRET, JWT_ALGO));
 
-            // storing user id globally for request lifecycle
-            $_REQUEST['auth_user_id'] = $decoded->sub;
+            if (!isset($decoded->sub)) {
+                // "Invalid token payload"
+                self::unauthorized();
+            }
+
+            return $decoded->sub;
 
         } catch (Exception $e) {
-            self::unauthorized("Invalid or expired token");
+            // "Invalid token"
+            self::unauthorized();
         }
     }
 
-    private static function unauthorized(string $msg)
+    private static function unauthorized()
     {
-        http_response_code(401);
-        echo json_encode(["error" => $msg]);
-        exit;
+        header("Location: ".ROOT."/public/page/login");
+        exit();
     }
-
-
 
 }

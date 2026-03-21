@@ -10,6 +10,7 @@ class Page extends Controller
 
     public function login()
     {
+        Authorization::handle();
         // Default page
         $this->view("auth/login");
     }

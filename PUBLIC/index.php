@@ -14,6 +14,7 @@ require "../APP/CORE/init.php";
 
 // middlware
 require "../APP/MIDDLEWARE/AuthMiddleware.php";
+require "../APP/MIDDLEWARE/Authorization.php";
 
 $app = new App();
 $app->handleController();
