@@ -18,6 +18,10 @@ class Students extends Controller
     {
         $this->view("students/leaderboard");
     }
+    public function profile()
+    {
+        $this->view("students/profile");
+    }
 }
 
 

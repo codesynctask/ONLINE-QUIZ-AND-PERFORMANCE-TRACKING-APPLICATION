@@ -48,12 +48,12 @@
 
             <div class="cta-buttons flex justify-between items-center gap-2 p-2 ">
                 <a 
-                    href="<?= ROOT ?>\public\page\register"
+                    href="<?= ROOT ?>\public\auth\logout"
                     class="flex gap-2 justify-center item-center bg-white btn hover:scale-105 w-fit">
                     <i class="ri-logout-box-line"></i> <span class="hidden lg:block">Logout</span>  
                 </a>
                 <a 
-                    href="<?= ROOT ?>\public\page\login"
+                    href="<?= ROOT ?>\public\students\profile"
                     class="flex gap-2 justify-center item-center btn btn-primary hover:scale-105 w-fit">
                     <i class="ri-user-fill"></i> <span class="hidden lg:block">Profile</span> 
                 </a>

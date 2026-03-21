@@ -22,7 +22,7 @@ class Authorization
         }
     }
 
-    private static function get_user_role(){
+    public static function get_user_role(){
         //create dummy teacher data
         $auth_user_id = AuthMiddleware::handle();
         $user = new Users();
