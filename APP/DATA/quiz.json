@@ -1,1 +1,94 @@
-[{"type":"multiple","difficulty":"hard","category":"Sports","question":"Who won the 1998 Daytona 500?","correct_answer":"Dale Earnhardt","incorrect_answers":["John Anderson","Jeff Gordon","Michael Walltrip"]},{"type":"multiple","difficulty":"hard","category":"Sports","question":"Which city features all of their professional sports teams&#039; jersey&#039;s with the same color scheme?","correct_answer":"Pittsburgh","incorrect_answers":["New York","Seattle","Tampa Bay"]},{"type":"multiple","difficulty":"hard","category":"Sports","question":"At which race was the 2018 F1 Drivers Championship won?","correct_answer":"Mexico","incorrect_answers":["United States","Belgium","Abu Dhabi"]},{"type":"multiple","difficulty":"hard","category":"Sports","question":"Who did Drew Brees pass in all time NFL passing yards in 2018?","correct_answer":"Peyton Manning","incorrect_answers":["Tom Brady","Dan Marino","Joe Montana"]},{"type":"multiple","difficulty":"hard","category":"Sports","question":"How many times did Martina Navratilova win the Wimbledon Singles Championship?","correct_answer":"Nine","incorrect_answers":["Ten","Seven","Eight"]},{"type":"multiple","difficulty":"hard","category":"Sports","question":"Who is Manchester United&#039;s leading appearance maker?","correct_answer":"Ryan Giggs","incorrect_answers":["David Beckham","Wayne Rooney","Eric Cantona"]},{"type":"multiple","difficulty":"hard","category":"Sports","question":"Which of these NHL players have never won a Hart Trophy for Regular Season MVP?","correct_answer":"Steve Yzerman","incorrect_answers":["Chris Pronger","Jose Theodore","Henrik Sedin"]},{"type":"multiple","difficulty":"hard","category":"Sports","question":"In Canadian football, scoring a rouge is worth how many points?","correct_answer":"1","incorrect_answers":["2","3","4"]},{"type":"multiple","difficulty":"hard","category":"Sports","question":"The Mazda 787B won the 24 Hours of Le Mans in what year?","correct_answer":"1991","incorrect_answers":["1990","2000","1987"]},{"type":"multiple","difficulty":"hard","category":"Sports","question":"What team did England beat in the semi-final stage to win in the 1966 World Cup final?","correct_answer":"Portugal","incorrect_answers":["West Germany","Soviet Union","Brazil"]}]
+[
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "Science: Computers",
+    "question": "Which of the following is the oldest of these computers by release date?",
+    "correct_answer": "TRS-80",
+    "incorrect_answers": ["Commodore 64", "ZX Spectrum", "Apple 3"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "Science: Computers",
+    "question": "What internet protocol was documented in RFC 1459?",
+    "correct_answer": "IRC",
+    "incorrect_answers": ["HTTP", "HTTPS", "FTP"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "Science: Computers",
+    "question": "According to DeMorgan&#039;s Theorem, the Boolean expression (AB)&#039; is equivalent to:",
+    "correct_answer": "A&#039; + B&#039;",
+    "incorrect_answers": [
+      "A&#039;B + B&#039;A",
+      "A&#039;B&#039;",
+      "AB&#039; + AB"
+    ]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "Science: Computers",
+    "question": "Dutch computer scientist Mark Overmars is known for creating which game development engine?",
+    "correct_answer": "Game Maker",
+    "incorrect_answers": ["Stencyl", "Construct", "Torque 2D"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "Science: Computers",
+    "question": "What vulnerability ranked #1 on the OWASP Top 10 in 2013?",
+    "correct_answer": "Injection ",
+    "incorrect_answers": [
+      "Broken Authentication",
+      "Cross-Site Scripting",
+      "Insecure Direct Object References"
+    ]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "Science: Computers",
+    "question": "Which of these Cherry MX mechanical keyboard switches is both tactile and clicky?",
+    "correct_answer": "Cherry MX Blue",
+    "incorrect_answers": ["Cherry MX Black", "Cherry MX Red", "Cherry MX Brown"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "Science: Computers",
+    "question": "Which of these is not a key value of Agile software development?",
+    "correct_answer": "Comprehensive documentation",
+    "incorrect_answers": [
+      "Individuals and interactions",
+      "Customer collaboration",
+      "Responding to change"
+    ]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "Science: Computers",
+    "question": "What is the name given to layer 4 of the Open Systems Interconnection (ISO) model?",
+    "correct_answer": "Transport",
+    "incorrect_answers": ["Session", "Data link", "Network"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "Science: Computers",
+    "question": "What is the codename of the eighth generation Intel Core micro-architecture launched in October 2017?",
+    "correct_answer": "Coffee Lake",
+    "incorrect_answers": ["Sandy Bridge", "Skylake", "Broadwell"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "Science: Computers",
+    "question": "Australia, Japan, and Southeast Asia are in which ITU Region?",
+    "correct_answer": "Region 3",
+    "incorrect_answers": ["Region 1", "Region 2", "Region 4"]
+  }
+]

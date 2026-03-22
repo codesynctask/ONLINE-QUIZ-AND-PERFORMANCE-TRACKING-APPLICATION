@@ -11,6 +11,9 @@ class Quiz extends Controller{
     public function index(){
         $this->view("/quiz/home");
     }
+    public function questions(){
+        $this->view("/quiz/questions");
+    }
 
     public function show_quiz_questions(){
         $updated_quiz_data = $this->update_quiz_data_file();
