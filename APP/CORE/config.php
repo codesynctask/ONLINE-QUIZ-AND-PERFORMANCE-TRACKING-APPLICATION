@@ -4,6 +4,8 @@
 define('ROOT', 'http://localhost/ONLINE-QUIZ-AND-PERFORMANCE-TRACKING-APPLICATION');
 // ROOT FILE PATH
 define('FILE_ROOT', dirname(__DIR__));
+// Quiz data file path
+define('QUIZ_DATA_FILE', FILE_ROOT . "/data/quiz.json");
 
 define('APP_NAME', 'ONLINE QUIZ AND PERFORMANCE TRACKING APPLICATION');
 

@@ -2,7 +2,7 @@
 
 
 class Controller{
-    function view($fileName)
+    function view($fileName,$data=[])
     {
         $fileName = "../app/view/" . $fileName . ".view.php";
 
