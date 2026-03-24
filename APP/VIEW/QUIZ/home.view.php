@@ -92,7 +92,7 @@
         <div id="quiz-config" class="flex flex-col items-center justify-start">
             <h1 class="text-center mb-[-0.8em] text-[clamp(2em,3.4vw,2.8em)] flex justify-center items-center gap-4"> Configure Your <img class="size-[clamp(3em,5vw,7vw)] " src="<?= ROOT ?>\PUBLIC\ASSETS\imgs\logo.png" alt="Quiz Tracker Logo"></h1>
             <p class="my-2">Choose a category, difficulty </p>
-            <form action="<?= ROOT ?>/public/quiz/show_quiz_questions" method="post" class="border-2 border-gray shadow-lg rounded-lg bg-white flex justify-center items-center flex-col p-4">
+            <form action="<?= ROOT ?>/public/quiz/questions" method="post" class="border-2 border-gray shadow-lg rounded-lg bg-white flex justify-center items-center flex-col p-4">
 
                 <div class=" w-full p-4 my-2 flex justify-center items-center gap-2 flex-col md:flex-row">
                     <label class="text-[clamp(1em,1.3vw,2.4vw)] truncate w-fit shrink-0" for="category"><i class="ri-book-shelf-fill"></i> Select Category: </label>

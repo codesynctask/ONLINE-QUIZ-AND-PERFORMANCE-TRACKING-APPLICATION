@@ -1,3 +1,19 @@
+<?php
+
+if (Session::has("current_quiz")) {
+    $current_quiz = Session::get("current_quiz");
+    $current_quiz_question_label = $current_quiz["question"]["label"];
+    $current_quiz_question_options = $current_quiz["question"]["options"];
+    $current_quiz_question_num = $current_quiz["question"]["num"] ;
+}else{
+    //redirect to /quiz : no session found for quiz data
+    echo "<h1>start new quiz with new session";
+    exit();
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -38,37 +54,39 @@
     </header>
 
     <section id="hero" class=" min-h-screen flex flex-col items-center justify-center lg:justify-start lg:mt-[100px]">
-        <div class="border-2 border-gray shadow-lg rounded-lg bg-white flex justify-center items-center flex-col m-4 p-4 lg:px-8">
-            <h3 class="uppercase text-[clamp(1.2em,1.5vw,1.5em)] p-4">question <i class="ri-number-1"></i> </h3>
-            <h1 class="px-px mx-px md:px-4 lg:px-8  text-[clamp(1.5em,1.3vw,2.4vw)] shrink-0  w-full text-start ">What vulnerability ranked #1 on the OWASP Top 10 in 2013?</h1>
-
-            <form class=" w-full py-4 px-px m-px md:p-4 lg:p-8 flex justify-center items-center gap-2 flex-col">
+        <div class="border-2 border-gray shadow-lg rounded-lg bg-white flex justify-center items-center flex-col m-4 p-4 lg:px-8 min-w-[200px] max-w-[700px]">
+            <h3 class="uppercase text-[clamp(1.2em,1.5vw,1.5em)] p-4">question <i class="ri-number-<?= $current_quiz_question_num?>"></i> </h3>
+            <h1 class="px-px mx-px md:px-4 lg:px-8  text-[clamp(1.5em,1.3vw,2.4vw)] shrink-0  w-full text-start "><?= $current_quiz_question_label ?></h1>
+            
+            <form action="<?= ROOT ?>/public/quiz/questions" class=" w-full py-4 px-px m-px md:p-4 lg:p-8 flex justify-center items-center gap-2 flex-col">
+                
                 <ul class="w-full flex justify-center items-center gap-4 flex-col">
                     <li class="w-full bg-red-100 flex my-px ">
                         <input class="radio-elm" type="radio" name="questions_no" value="answer_no" id="question_a">
                         <label
                             class="p-4 bg-white cursor-pointer border-white hover:shadow-lg hover:border-black border-2 rounded-lg block w-full justify-center items-start hover:font-bold"
-                            for="question_a"> A. Broken Authentication</label>
+                            for="question_a"> A. <?= $current_quiz_question_options[0] ?></label>
                     </li>
                     <li class="w-full bg-red-100 flex my-px ">
                         <input class="radio-elm" type="radio" name="questions_no" value="answer_no" id="question_b">
                         <label
                             class="p-4 bg-white cursor-pointer border-white hover:shadow-lg hover:border-black border-2 rounded-lg block w-full justify-center items-start hover:font-bold"
-                            for="question_b"> B. Cross-Site Scripting</label>
+                            for="question_b"> B.  <?= $current_quiz_question_options[1] ?></label>
                     </li>
                     <li class="w-full bg-red-100 flex my-px ">
                         <input class="radio-elm" type="radio" name="questions_no" value="answer_no" id="questions_c">
                         <label
                             class="p-4 bg-white cursor-pointer border-white hover:shadow-lg hover:border-black border-2 rounded-lg block w-full justify-center items-start hover:font-bold"
-                            for="questions_c"> C. Insecure Direct Object References</label>
+                            for="questions_c"> C.  <?= $current_quiz_question_options[2] ?></label>
                     </li>
                     <li class="w-full bg-red-100 flex my-px ">
                         <input class="radio-elm" type="radio" name="questions_no" value="answer_no" id="question_d">
                         <label
                             class="p-4 bg-white cursor-pointer border-white hover:shadow-lg hover:border-black border-2 rounded-lg block w-full justify-center items-start hover:font-bold"
-                            for="question_d"> D. Injection</label>
+                            for="question_d"> D.  <?= $current_quiz_question_options[3] ?></label>
                     </li>
                 </ul>
+                
 
                 <div class="mt-4 flex gap-4  w-full">
                     <button class="btn w-full flex justify-center items-center gap-2 md:gap-4"><i class="ri-arrow-left-long-fill text-[1.7em]"></i> Previus</button>
