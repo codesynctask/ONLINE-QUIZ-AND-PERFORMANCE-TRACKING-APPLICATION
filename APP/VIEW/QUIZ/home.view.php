@@ -107,7 +107,7 @@
                         <option value="15">Entertainment: Video Games</option>
                         <option value="16">Entertainment: Board Games</option>
                         <option value="17">Science &amp; Nature</option>
-                        <option value="18">Science: Computers</option>
+                        <option selected value="18">Science: Computers</option>
                         <option value="19">Science: Mathematics</option>
                         <option value="20">Mythology</option>
                         <option value="21">Sports</option>
@@ -129,7 +129,7 @@
                 <div class=" w-full p-4 my-2 flex justify-center items-center gap-2 flex-col md:flex-row">
                     <label class="text-[clamp(1em,1.3vw,2.4vw)] truncate w-fit shrink-0"><i class="ri-signal-cellular-1-fill"></i> Select Difficulty: </label>
                     <div class="w-full flex justify-center items-center gap-4">
-                        <input class="radio-elm" type="radio" name="difficulty" value="easy" id="easy">
+                        <input class="radio-elm" type="radio" name="difficulty" value="easy" id="easy" checked>
                         <label class="btn w-fit hover:bg-orange-600 hover:text-white" for="easy"><i class="ri-baseball-fill text-[1.2em]"></i> Easy</label>
 
                         <input class="radio-elm" type="radio" name="difficulty" value="medium" id="medium">

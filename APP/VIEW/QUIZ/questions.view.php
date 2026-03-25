@@ -32,6 +32,11 @@ if (Session::has("current_quiz")) {
     <link rel="stylesheet" href="<?= ROOT ?>\PUBLIC\ASSETS\styles\animation.css">
     <link rel="stylesheet" href="<?= ROOT ?>\PUBLIC\ASSETS\styles\utility.css">
     <link rel="stylesheet" href="<?= ROOT ?>\PUBLIC\ASSETS\styles\component.css">
+    <style>
+        *{
+            user-select: none;
+        }
+    </style>
 </head>
 
 <body class="relative text-[clamp(0.8rem,1.3vw,1rem)]">
@@ -58,29 +63,29 @@ if (Session::has("current_quiz")) {
             <h3 class="uppercase text-[clamp(1.2em,1.5vw,1.5em)] p-4">question <?= $current_quiz_question_num?></h3>
             <h1 class="px-px mx-px md:px-4 lg:px-8  text-[clamp(1.5em,1.3vw,2.4vw)] shrink-0  w-full text-start "><?= $current_quiz_question_label ?></h1>
             
-            <form action="<?= ROOT ?>/public/quiz/questions" class=" w-full py-4 px-px m-px md:p-4 lg:p-8 flex justify-center items-center gap-2 flex-col">
+            <form action="<?= ROOT ?>/public/quiz/questions" method="post" class=" w-full py-4 px-px m-px md:p-4 lg:p-8 flex justify-center items-center gap-2 flex-col">
                 
                 <ul class="w-full flex justify-center items-center gap-4 flex-col">
                     <li class="w-full bg-red-100 flex my-px ">
-                        <input class="radio-elm" type="radio" name="questions_no" value="answer_no" id="question_a">
+                        <input class="radio-elm" type="radio" name="answer" value="<?= $current_quiz_question_options[0]?>" id="question_a" required>
                         <label
                             class="p-4 bg-white cursor-pointer border-white hover:shadow-lg hover:border-black border-2 rounded-lg block w-full justify-center items-start hover:font-bold"
                             for="question_a"> A. <?= $current_quiz_question_options[0] ?></label>
                     </li>
                     <li class="w-full bg-red-100 flex my-px ">
-                        <input class="radio-elm" type="radio" name="questions_no" value="answer_no" id="question_b">
+                        <input class="radio-elm" type="radio" name="answer" value="<?= $current_quiz_question_options[1]?>" id="question_b">
                         <label
                             class="p-4 bg-white cursor-pointer border-white hover:shadow-lg hover:border-black border-2 rounded-lg block w-full justify-center items-start hover:font-bold"
                             for="question_b"> B.  <?= $current_quiz_question_options[1] ?></label>
                     </li>
                     <li class="w-full bg-red-100 flex my-px ">
-                        <input class="radio-elm" type="radio" name="questions_no" value="answer_no" id="questions_c">
+                        <input class="radio-elm" type="radio" name="answer" value="<?= $current_quiz_question_options[2]?>" id="questions_c">
                         <label
                             class="p-4 bg-white cursor-pointer border-white hover:shadow-lg hover:border-black border-2 rounded-lg block w-full justify-center items-start hover:font-bold"
                             for="questions_c"> C.  <?= $current_quiz_question_options[2] ?></label>
                     </li>
                     <li class="w-full bg-red-100 flex my-px ">
-                        <input class="radio-elm" type="radio" name="questions_no" value="answer_no" id="question_d">
+                        <input class="radio-elm" type="radio" name="answer" value="<?= $current_quiz_question_options[3]?>" id="question_d">
                         <label
                             class="p-4 bg-white cursor-pointer border-white hover:shadow-lg hover:border-black border-2 rounded-lg block w-full justify-center items-start hover:font-bold"
                             for="question_d"> D.  <?= $current_quiz_question_options[3] ?></label>
@@ -89,7 +94,7 @@ if (Session::has("current_quiz")) {
                 
 
                 <div class="mt-4 flex gap-4  w-full">
-                    <button class="btn w-full flex justify-center items-center gap-2 md:gap-4"><i class="ri-arrow-left-long-fill text-[1.7em]"></i> Previus</button>
+                    <button class="btn w-full flex justify-center items-center gap-2 md:gap-4" aria-readonly="true"><i class="ri-arrow-left-long-fill text-[1.7em]"></i> Previus</button>
                     <button class="btn w-full flex justify-center items-center gap-2 md:gap-4 btn-primary"> Next <i class="ri-arrow-right-long-fill text-[1.7em]"></i> </button>
                 </div>
 
@@ -137,6 +142,14 @@ if (Session::has("current_quiz")) {
             </div>
         </div>
     </footer>
+
+
+
+
+    <script src="https://code.jquery.com/jquery-4.0.0.js"></script>
+    <script>
+
+    </script>
 </body>
 
 </html>

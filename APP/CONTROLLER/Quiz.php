@@ -13,7 +13,6 @@ class Quiz extends Controller{
         $this->view("/quiz/home");
     }
     public function questions(){
-        // Session::destroy(); 
         if (!Session::has("current_quiz")) {
            $this->update_quiz_data_file();
         }
@@ -23,7 +22,9 @@ class Quiz extends Controller{
         $current_quiz_session_data["question"]["num"] = ($current_quiz_session_data["question"]["num"] ?? 0) + 1;
 
         Session::set("current_quiz", $current_quiz_session_data);
+        
         $this->view("/quiz/questions");
+        show($current_quiz_session_data["solution"]["all_selected_options"]);
     }
 
     public function quiz_session_validate(){
@@ -39,12 +40,15 @@ class Quiz extends Controller{
                 "solution" => [
                     "marks_obtained" => 0,
                     "correct_option"=> $current_quiz_data["current_question_correct_option"],
-                    "selected_option"=>"7"
-                    ]
-            ];
+                    "current_selected_option"=>"7",
+                    "all_selected_options"=>$current_quiz_data["current_all_selected_options"]
+                    ],
+                "category"=>$_POST["category"] ?? 18,
+                "difficulty"=>$_POST["difficulty"] ?? "easy",
+            ];           
     
             // is solution correct
-            if($current_quiz['solution']['correct_option']==$current_quiz['solution']['selected_option']){
+            if($current_quiz['solution']['correct_option']==$current_quiz['solution']['current_selected_option']){
                 $current_quiz['solution']['marks_obtained'] +=1;
             }
             Session::set("current_quiz",$current_quiz);
@@ -55,11 +59,11 @@ class Quiz extends Controller{
         $quiz_all_question = json_decode($quiz_all_question,true);
 
         // Question Index
-        $current_question_num = Session::get("current_quiz");
-        $current_question_num = $current_question_num["question"]["num"] ?? 0;
+        $current_quiz_data = Session::get("current_quiz");
+        $current_question_num = $current_quiz_data["question"]["num"] ?? 0;
 
         // If quiestion index reaches 10
-        if (!isset($current_question_num["question"]["num"]) and $current_question_num>9) {
+        if (!isset($current_quiz_data["question"]["num"]) and $current_question_num>9) {
             header("Location: ".ROOT."/public/students/result/");
             exit();
             }
@@ -69,12 +73,24 @@ class Quiz extends Controller{
         $current_question_options = array_merge($quiz_all_question[$current_question_num]["incorrect_answers"], [$quiz_all_question[$current_question_num]["correct_answer"]]);
         $current_question_correct_option = $quiz_all_question[$current_question_num]["correct_answer"];
 
-        // // updating current quiz data
+        if (isset($_POST["answer"])) {
+
+            if (!isset($current_quiz_data["solution"]["all_selected_options"])) {
+                $current_quiz_data["solution"]["all_selected_options"] = [];
+            }
+
+            $current_quiz_data["solution"]["all_selected_options"][] = $_POST["answer"];
+        }
+
+        $current_all_selected_options = $current_quiz_data["solution"]["all_selected_options"]??[];
+
+        // updating current quiz data
         $current_quiz_data = [
             "current_question_num" => $current_question_num,
             "current_question_label" => $current_question_label,
             "current_question_options" => $current_question_options,
-            "current_question_correct_option" => $current_question_correct_option
+            "current_question_correct_option" => $current_question_correct_option,
+            "current_all_selected_options" => $current_all_selected_options,
         ];
 
         return $current_quiz_data;
