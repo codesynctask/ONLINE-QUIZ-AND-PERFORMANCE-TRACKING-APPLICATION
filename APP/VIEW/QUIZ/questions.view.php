@@ -55,7 +55,7 @@ if (Session::has("current_quiz")) {
 
     <section id="hero" class=" min-h-screen flex flex-col items-center justify-center lg:justify-start lg:mt-[100px]">
         <div class="border-2 border-gray shadow-lg rounded-lg bg-white flex justify-center items-center flex-col m-4 p-4 lg:px-8 min-w-[200px] max-w-[700px]">
-            <h3 class="uppercase text-[clamp(1.2em,1.5vw,1.5em)] p-4">question <i class="ri-number-<?= $current_quiz_question_num?>"></i> </h3>
+            <h3 class="uppercase text-[clamp(1.2em,1.5vw,1.5em)] p-4">question <?= $current_quiz_question_num?></h3>
             <h1 class="px-px mx-px md:px-4 lg:px-8  text-[clamp(1.5em,1.3vw,2.4vw)] shrink-0  w-full text-start "><?= $current_quiz_question_label ?></h1>
             
             <form action="<?= ROOT ?>/public/quiz/questions" class=" w-full py-4 px-px m-px md:p-4 lg:p-8 flex justify-center items-center gap-2 flex-col">

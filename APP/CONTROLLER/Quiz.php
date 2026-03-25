@@ -9,10 +9,14 @@ class Quiz extends Controller{
         }
     }
     public function index(){
+        Session::remove("current_quiz");
         $this->view("/quiz/home");
     }
     public function questions(){
-        // Session::destroy();
+        // Session::destroy(); 
+        if (!Session::has("current_quiz")) {
+           $this->update_quiz_data_file();
+        }
         $this->quiz_session_validate();
 
         $current_quiz_session_data = Session::get("current_quiz");
@@ -53,6 +57,12 @@ class Quiz extends Controller{
         // Question Index
         $current_question_num = Session::get("current_quiz");
         $current_question_num = $current_question_num["question"]["num"] ?? 0;
+
+        // If quiestion index reaches 10
+        if (!isset($current_question_num["question"]["num"]) and $current_question_num>9) {
+            header("Location: ".ROOT."/public/students/result/");
+            exit();
+            }
         
         // // quiz data
         $current_question_label = $quiz_all_question[$current_question_num]["question"];
