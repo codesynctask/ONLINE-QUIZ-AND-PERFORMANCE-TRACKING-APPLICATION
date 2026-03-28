@@ -92,9 +92,116 @@
 
     </header>
 
-    <section id="hero"  class="py-4 px-[5vw] min-h-screen flex flex-col items-center justify-start ">
-        <h1 class="mt-[20vh]">STUDENT RESULT PAGE</h1>
-    </section>
+<section id="hero" class="py-4 px-[5vw] min-h-screen flex flex-col items-center justify-start pt-28">
+
+<!-- Result cont -->
+    <div class="w-full  h-content  rounded-3xl p-1 rounded-[22px]  flex flex-col md:flex-row justify-center items-center p-4">
+
+        <!-- top img -->
+        <div class=" rounded-3xl px-6 pt-8 text-center relative overflow-hidden">
+            <p class="relative z-10 text-purple-700 text-sm font-semibold uppercase tracking-widest mb-1">Quiz Complete</p>
+            <div class="relative z-10 mt-4 flex justify-center">
+                <img src="<?= ROOT ?>\PUBLIC\ASSETS\imgs\result-header.png" class="w-[30vw] max-w-[250px] min-w-[150px] drop-shadow-lg">
+            </div>
+        </div>
+
+        <!-- White overlap card -->
+        <div class=" mx-4 bg-white rounded-2xl shadow-xl p-6 relative z-10 w-[40vw] w-full max-w-[450px] min-w-fit my-8">
+
+            <!-- Share button -->
+            <button class="absolute top-4 right-4 w-9 h-9 bg-purple-50 hover:bg-purple-100 rounded-full flex items-center justify-center transition-colors">
+                <i class="ri-share-forward-line text-purple-500"></i>
+            </button>
+
+            <!-- Congrats -->
+            <div class="text-center mb-5">
+                <span class="btn btn-primary ">
+                    Excellent!
+                </span>
+                <h2 class="text-[clamp(1.8em,3.8vw,5.5vw)] font-black text-gray-900 mt-2">Congratulations!</h2>
+                <p class="text-gray-400 font-semibold mt-1">
+                    You've scored <span class="text-orange-600 font-black text-lg">+<?= $data["result"]["marks"] ?></span> points
+                </p>
+            </div>
+
+            <!-- Stats row -->
+            <div class="grid grid-cols-3 gap-2">
+                <div class="flex flex-col items-center gap-1 bg-purple-50 rounded-2xl py-4">
+                    <div class="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center">
+                        <span class="text-purple-600 font-black text-sm">Q</span>
+                    </div>
+                    <span class="text-2xl font-black text-gray-900">10</span>
+                    <span class="text-xs text-gray-400 font-bold">Total Que</span>
+                </div>
+                <div class="flex flex-col items-center gap-1 bg-green-50 rounded-2xl py-4">
+                    <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center">
+                        <i class="ri-checkbox-circle-fill text-green-500"></i>
+                    </div>
+                    <span class="text-2xl font-black text-green-600"><?= $data["result"]["marks"] ?></span>
+                    <span class="text-xs text-gray-400 font-bold">Correct</span>
+                </div>
+                <div class="flex flex-col items-center gap-1 bg-red-50 rounded-2xl py-4">
+                    <div class="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center">
+                        <i class="ri-close-circle-fill text-red-500"></i>
+                    </div>
+                    <span class="text-2xl font-black text-red-500"><?= 10 - $data["result"]["marks"] ?></span>
+                    <span class="text-xs text-gray-400 font-bold">Wrong</span>
+                </div>
+            </div>
+
+            <!-- Meta info -->
+            <div class="flex justify-between mt-4 px-2 text-xs text-gray-400 font-semibold">
+                <span><i class="ri-bookmark-fill text-purple-400 mr-1"></i>Category: <span class="text-gray-600"><?= $data["category_name"] ?></span></span>
+                <span><i class="ri-bar-chart-fill text-purple-400 mr-1"></i>Difficulty: <span class="text-gray-600"><?= $data["difficulty"] ?></span></span>
+            </div>
+        </div>
+
+    </div>
+    <!-- Answer Review -->
+    <div class="overflow-x-auto">
+        <table class="w-[80vw] border border-gray-300 border-collapse text-left">
+            
+            <thead class="bg-orange-600 text-white">
+                <tr>
+                    <th class="border border-gray-300 px-4 py-2">Q.No.</th>
+                    <th class="border border-gray-300 px-4 py-2">Question</th>
+                    <th class="border border-gray-300 px-4 py-2">Correct Answer</th>
+                    <th class="border border-gray-300 px-4 py-2">Selected Answer</th>
+                    <th class="border border-gray-300 px-4 py-2">Status</th>
+                </tr>
+            </thead>
+
+            <tbody>
+        <?php
+        for ($i = 0; $i < count($data["quiz_file_questions"]); $i++) {
+
+            $correct = trim(html_entity_decode($data['quiz_file_questions'][$i]['correct_answer']));
+            $selected = trim(html_entity_decode($data['all_selected_options'][$i]));
+
+            echo "
+            <tr class='odd:bg-white even:bg-gray-50 hover:bg-gray-200'>
+                <td class='border border-gray-300 px-4 py-2'>" . ($i + 1) . "</td>
+                <td class='border border-gray-300 px-4 py-2'>{$data['quiz_file_questions'][$i]['question']}</td>
+                <td class='border border-gray-300 px-4 py-2'>{$correct}</td>
+                <td class='border border-gray-300 px-4 py-2'>{$selected}</td>
+                <td class='border border-gray-300 px-4 py-2 font-semibold'>" .
+                    (strtolower($correct) == strtolower($selected)
+                        ? "<span class='text-green-600'>Pass</span>"
+                        : "<span class='text-red-600'>Fail</span>"
+                    ) .
+                "</td>
+            </tr>";
+        }
+
+
+            ?>
+            </tbody>
+
+        </table>
+    </div>
+    </div>
+
+</section>
 
         <!-- FOOTER -->
     <footer class="bg-black text-white mt-10">

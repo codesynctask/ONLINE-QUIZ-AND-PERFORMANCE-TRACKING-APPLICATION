@@ -58,10 +58,15 @@ class Quiz extends Controller{
 
         // 1. Saving answer for the CURRENT question
         if (isset($_POST["answer"])) {
-            $correct = $quiz_data[$current_num]["correct_answer"] ?? null;
-            $session["solution"]["all_selected_options"][] = $_POST["answer"];
 
-            if ($correct !== null && $_POST["answer"] === $correct) {
+            $correct = $quiz_data[$current_num]["correct_answer"] ?? null;
+
+            $selected = trim(html_entity_decode($_POST["answer"]));
+            $correct_clean = trim(html_entity_decode($correct));
+
+            $session["solution"]["all_selected_options"][] = $selected;
+
+            if ($correct_clean !== null && strtolower($selected) === strtolower($correct_clean)) {
                 $session["solution"]["marks_obtained"] += 1;
             }
         }
