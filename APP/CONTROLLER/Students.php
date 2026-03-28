@@ -43,6 +43,8 @@ class Students extends Controller
             "32" => "Entertainment: Cartoon & Animations"
         ];
         $category_name = "Unknown Category";
+        $difficulty = $current_quiz_session["difficulty"] ?? "easy";
+        $score_obtained = $current_quiz_session["solution"]["marks_obtained"] ?? 0;
 
         foreach ($categories as $key => $value) {
             if ($key == $current_quiz_session["category"]) {
@@ -50,14 +52,27 @@ class Students extends Controller
             }
         }
 
+        // Points allocation based on difficulty
+        switch ($difficulty) {
+            case 'hard':
+                $score_obtained *= 3;
+                break;
+            case 'medium':
+                $score_obtained *= 2;
+                break;
+            default:
+                $score_obtained *= 1;
+                break;
+        }
         
         $data = [
             "result"=>[
-                "marks"=>$current_quiz_session["solution"]["marks_obtained"]// todo: give points score based on difficulty
+                "score_obtained"=>$score_obtained,
+                "marks"=> $current_quiz_session["solution"]["marks_obtained"]
             ],
             "quiz_file_questions"=>$quiz_file_questions,
             "all_selected_options" => $current_quiz_session["solution"]["all_selected_options"],
-            "difficulty"=>$current_quiz_session["difficulty"],
+            "difficulty"=> $difficulty,
             "category_name"=>$category_name,
         ];  
         $this->view("students/result",$data);

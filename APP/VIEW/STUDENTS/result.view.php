@@ -120,7 +120,7 @@
                 </span>
                 <h2 class="text-[clamp(1.8em,3.8vw,5.5vw)] font-black text-gray-900 mt-2">Congratulations!</h2>
                 <p class="text-gray-400 font-semibold mt-1">
-                    You've scored <span class="text-orange-600 font-black text-lg">+<?= $data["result"]["marks"] ?></span> points
+                    You've scored <span class="text-orange-600 font-black text-lg">+<?= $data["result"]["score_obtained"] ?></span> points
                 </p>
             </div>
 
