@@ -2,6 +2,8 @@
 
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
+use Firebase\JWT\ExpiredException;
+use Firebase\JWT\SignatureInvalidException;
 
 class AuthMiddleware
 {
@@ -36,15 +38,27 @@ class AuthMiddleware
 
             return $decoded->sub;
 
+        } catch (ExpiredException $e) {
+            Cookie::delete("jwt_token");        // remove stale cookie
+            self::unauthorized();
+        } catch (SignatureInvalidException $e) {
+            Cookie::delete("jwt_token");        // remove tampered cookie
+            self::unauthorized();
         } catch (Exception $e) {
-            // "Invalid token"
             self::unauthorized();
         }
     }
+    private static function unauthorized() {
+        $isAjax = !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest';
 
-    private static function unauthorized()
-    {
-        header("Location: ".ROOT."/public/page/login");
+        if ($isAjax) {
+            http_response_code(401);
+            header('Content-Type: application/json');
+            echo json_encode(["msg" => "Unauthorized"]);
+            exit();
+        }
+
+        header("Location: " . ROOT . "/public/page/login");
         exit();
     }
 

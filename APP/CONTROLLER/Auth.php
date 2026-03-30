@@ -10,39 +10,46 @@ class Auth extends Controller
 
     public function register(){
         if ($_SERVER["REQUEST_METHOD"] !== "POST") {
-            $this->json_response(["msg" => "Method not allowed"]);
+            $this->json_response(["msg" => "Method not allowed"],405);
             return;
         }
 
+        // Sanitize inputs first
+        $username = trim($_POST["username"] ?? "");
+        $password = trim($_POST["password"] ?? "");
+        $fullname = trim($_POST["fullname"] ?? "");
+
         // field is not empty
-        if (
-          !(isset($_POST["username"]) &&
-            isset($_POST["password"]) &&
-            isset($_POST["fullname"]))
-        ) {
-            $this->json_response(["msg" => "missing fields"]);
+        if (empty($username) || empty($password) || empty($fullname)) {
+            $this->json_response(["msg" => "missing fields"],400);
+            return;
+        }
+
+        // Server-side password validation 
+        if (strlen($password) < 6) {
+            $this->json_response(["msg" => "Password too short"],400);
             return;
         }
 
         // check data exist : avoid duplicates
         $users = new Users();
-        $isUserData = $users->findOneBy("username",$_POST["username"]);
+        $isUserData = $users->findOneBy("username",$username);
 
         if ($isUserData) {
-            $this->json_response(["msg" => "Duplicated entries"]);
+            $this->json_response(["msg" => "Duplicated entries"],409);
             return;
         }
 
         // Creating new user
         $newUser = [
-            "username"=> $_POST["username"],
-            "password"=> password_hash($_POST["password"], PASSWORD_BCRYPT),
+            "username"=> $username,
+            "password"=> password_hash($password, PASSWORD_BCRYPT),
             "role"=> "student", //default role
-            "fullname"=> $_POST["fullname"],
+            "fullname"=> $fullname,
         ];
         $users->create($newUser);
         
-        header("Location: ".ROOT."/public/page/login");
+        $this->json_response(["msg" => "success"],200);
         exit();
     }
         
@@ -53,12 +60,12 @@ class Auth extends Controller
             return;
         }
 
-        // 1. checking login user data received
-        $username = $_POST["username"] ?? null;
-        $password = $_POST["password"] ?? null;
+        // 1. Sanitize and validate inputs
+        $username = trim($_POST["username"] ?? '');
+        $password = trim($_POST["password"] ?? '');
 
-        if (!$username || !$password) {
-            $this->json_response(["msg" => "username and password required"],400);
+        if (empty($username) || empty($password)) {
+            $this->json_response(["msg" => "username and password required"], 400);
             return;
         }
                 
@@ -67,7 +74,8 @@ class Auth extends Controller
         $usersData = $users->findOneBy("username",$username);
         
         if (!$usersData) {
-            $this->json_response(["msg" => "Invalid credentials"],401);
+            error_log("Login failed: username '$username' not found");
+            $this->json_response(["msg" => "Invalid credentials"], 401);
             return;
         }
         
@@ -83,23 +91,40 @@ class Auth extends Controller
         $token = AuthMiddleware::generate($user_id);
         $isJwtCookieSet = Cookie::set("jwt_token",$token, 3600, "/", "", true,true);
         if ($isJwtCookieSet) {
-            AuthMiddleware::handle();
+            $this->json_response(["msg" => "success"],200);
+            return;
         }
     }
 
-    public function logout(){
-        Cookie::delete("jwt_token");
-        header("Location: ".ROOT."/public/");
+public function logout() {
+    // preventing CSRF logout attacks
+    if ($_SERVER["REQUEST_METHOD"] !== "POST") {
+        header("Location: " . ROOT . "/public/");
         exit();
     }
 
-    /*
-    controller-->method{
-        // to protect particular path we will run middleware at the start of logic
+    // user already logged out
+    if (!Cookie::get("jwt_token")) {
+        header("Location: " . ROOT . "/public/page/login");
+        exit();
     }
 
+    // Delete the JWT cookie
+    Cookie::delete("jwt_token");
 
-    */
+    // Destroy PHP session if one is active
+    if (session_status() === PHP_SESSION_ACTIVE) {
+        session_unset();
+        session_destroy();
+    }
+
+    // Prevent browser from caching protected pages after logout
+    header("Cache-Control: no-store, no-cache, must-revalidate");
+    header("Pragma: no-cache");
+
+    header("Location: " . ROOT . "/public/");
+    exit();
+}
 
 }
 

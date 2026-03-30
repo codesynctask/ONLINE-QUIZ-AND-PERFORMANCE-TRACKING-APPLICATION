@@ -16,6 +16,6 @@ define('DBPASS', '1234');
 
 // JWT
 define('JWT_SECRET', 'codesynctask_very_strong_secret_key_1234567890');
-define('JWT_EXPIRY', 3600);
+define('JWT_EXPIRY', 604800); // 7 days 
 define('JWT_ALGO', 'HS256');
-define('JWT_EXPIRY_TIME', 3600);
+define('JWT_EXPIRY_TIME', 604800); // 7 days 

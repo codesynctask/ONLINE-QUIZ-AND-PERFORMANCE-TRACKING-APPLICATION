@@ -44,3 +44,6 @@ todo.txt
 
 # controller
 Test.php
+
+# Data
+app/data/quiz.json
