@@ -186,6 +186,9 @@
             </div>
         </div>
     </footer>
+
+
+    <!-- TODO: make btn clickable after 5 seconds agian-->
 </body>
 
 </html>

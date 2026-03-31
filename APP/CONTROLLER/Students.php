@@ -12,9 +12,12 @@ class Students extends Controller
     }
     public function result()
     {
+        if (!Session::has("current_quiz")) {
+            header("Location: " . ROOT . "/public/quiz/");
+            exit();
+        }
         $current_quiz_session = Session::get("current_quiz");
-        $quiz_file_questions = File::read(QUIZ_DATA_FILE);
-        $quiz_file_questions = json_decode($quiz_file_questions,true);
+        $quiz_file_questions = json_decode(File::read(QUIZ_DATA_FILE), true) ?? [];
         $categories = [
             "any" => "Any Category",
             "9" => "General Knowledge",
@@ -42,9 +45,13 @@ class Students extends Controller
             "31" => "Entertainment: Japanese Anime & Manga",
             "32" => "Entertainment: Cartoon & Animations"
         ];
-        $category_name = "Unknown Category";
+        $category_key  = (string)($current_quiz_session["category"] ?? "any");
+        $category_name = $categories[$category_key] ?? "Unknown Category";
+
         $difficulty = $current_quiz_session["difficulty"] ?? "easy";
-        $score_obtained = $current_quiz_session["solution"]["marks_obtained"] ?? 0;
+        $marks_obtained      = $current_quiz_session["solution"]["marks_obtained"] ?? 0;
+        $all_selected_options = $current_quiz_session["solution"]["all_selected_options"] ?? [];
+        $total_questions     = count($quiz_file_questions);
 
         foreach ($categories as $key => $value) {
             if ($key == $current_quiz_session["category"]) {
@@ -52,26 +59,42 @@ class Students extends Controller
             }
         }
 
+        foreach ($quiz_file_questions as $index => $question) {
+            $selected = $all_selected_options[$index] ?? null;
+
+            if ($selected === null) continue;
+
+            $correct  = trim(html_entity_decode($question["correct_answer"]));
+            $selected = trim(html_entity_decode($selected));
+
+            if (strtolower($selected) === strtolower($correct)) {
+                $marks_obtained += 1;
+            }
+        }
+
+
         // Points allocation based on difficulty
         switch ($difficulty) {
             case 'hard':
-                $score_obtained *= 3;
+                $score_obtained = $marks_obtained * 3;
                 break;
             case 'medium':
-                $score_obtained *= 2;
+                $score_obtained = $marks_obtained * 2;
                 break;
             default:
-                $score_obtained *= 1;
+                $score_obtained = $marks_obtained * 1;
                 break;
         }
-        
+
+        // Marks calculation based on correct answers
+        $current_quiz_session["solution"]["marks_obtained"] = $score_obtained;
         $data = [
             "result"=>[
                 "score_obtained"=>$score_obtained,
-                "marks"=> $current_quiz_session["solution"]["marks_obtained"]
+                "marks"=> $marks_obtained
             ],
             "quiz_file_questions"=>$quiz_file_questions,
-            "all_selected_options" => $current_quiz_session["solution"]["all_selected_options"],
+            "all_selected_options" => $all_selected_options,
             "difficulty"=> $difficulty,
             "category_name"=>$category_name,
         ];  
