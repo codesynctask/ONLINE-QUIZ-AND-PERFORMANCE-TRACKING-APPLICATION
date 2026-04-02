@@ -89,6 +89,7 @@ class Auth extends Controller
 
         // 3. Generating JWT token and send as cookie
         $token = AuthMiddleware::generate($user_id);
+        Session::set("user_id", $user_id); // Store user ID in session for server-side access
         $isJwtCookieSet = Cookie::set("jwt_token",$token, 3600, "/", "", true,true);
         if ($isJwtCookieSet) {
             $this->json_response(["msg" => "success"],200);

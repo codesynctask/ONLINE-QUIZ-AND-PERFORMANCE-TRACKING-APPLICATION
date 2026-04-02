@@ -76,4 +76,8 @@ abstract class Model{
         return $stmt->execute();
     }
 
+    public function lastInsertId()
+    {
+        return $this->db->lastInsertId();
+    }
 }

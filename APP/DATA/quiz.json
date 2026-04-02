@@ -1,1 +1,86 @@
-[{"type":"multiple","difficulty":"medium","category":"Science: Computers","question":"What is the correct term for the metal object in between the CPU and the CPU fan within a computer system?","correct_answer":"Heat Sink","incorrect_answers":["CPU Vent","Temperature Decipator","Heat Vent"]},{"type":"multiple","difficulty":"medium","category":"Science: Computers","question":"In programming, the ternary operator is mostly defined with what symbol(s)?","correct_answer":"?:","incorrect_answers":["??","if then","?"]},{"type":"multiple","difficulty":"medium","category":"Science: Computers","question":"On which computer hardware device is the BIOS chip located?","correct_answer":"Motherboard","incorrect_answers":["Hard Disk Drive","Central Processing Unit","Graphics Processing Unit"]},{"type":"multiple","difficulty":"medium","category":"Science: Computers","question":".rs is the top-level domain for what country?","correct_answer":"Serbia","incorrect_answers":["Romania","Russia","Rwanda"]},{"type":"multiple","difficulty":"medium","category":"Science: Computers","question":"Approximately how many Apple I personal computers were created?","correct_answer":"200","incorrect_answers":["100","500","1000"]},{"type":"multiple","difficulty":"medium","category":"Science: Computers","question":"How many bits make up the significand portion of a single precision floating point number?","correct_answer":"23","incorrect_answers":["8","53","15"]},{"type":"multiple","difficulty":"medium","category":"Science: Computers","question":"Which programming language was developed by Sun Microsystems in 1995?","correct_answer":"Java","incorrect_answers":["Python","Solaris OS","C++"]},{"type":"multiple","difficulty":"medium","category":"Science: Computers","question":"Which of these programming languages is a low-level language?","correct_answer":"Assembly","incorrect_answers":["Python","C#","Pascal"]},{"type":"multiple","difficulty":"medium","category":"Science: Computers","question":"What does the &#039;S&#039; in the RSA encryption algorithm stand for?","correct_answer":"Shamir","incorrect_answers":["Secure","Schottky","Stable"]},{"type":"multiple","difficulty":"medium","category":"Science: Computers","question":"What does &quot;LCD&quot; stand for?","correct_answer":"Liquid Crystal Display","incorrect_answers":["Language Control Design","Last Common Difference","Long Continuous Design"]}]
+[
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "Sports",
+    "question": "Which of these NHL players have never won a Hart Trophy for Regular Season MVP?",
+    "correct_answer": "Steve Yzerman",
+    "incorrect_answers": ["Chris Pronger", "Jose Theodore", "Henrik Sedin"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "Sports",
+    "question": "What tool lends it&#039;s name to a last-stone advantage in an end in Curling?",
+    "correct_answer": "Hammer",
+    "incorrect_answers": ["Wrench", "Drill", "Screwdriver"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "Sports",
+    "question": "Who is Manchester United&#039;s leading appearance maker?",
+    "correct_answer": "Ryan Giggs",
+    "incorrect_answers": ["David Beckham", "Wayne Rooney", "Eric Cantona"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "Sports",
+    "question": "With which doubles partner did John McEnroe have most success?",
+    "correct_answer": "Peter Fleming",
+    "incorrect_answers": ["Mark Woodforde", "Michael Stich", "Mary Carillo"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "Sports",
+    "question": "Which male player won the gold medal of table tennis singles in 2016 Olympics Games?",
+    "correct_answer": "Ma Long (China)",
+    "incorrect_answers": [
+      "Zhang Jike (China)",
+      "Jun Mizutani (Japan)",
+      "Vladimir Samsonov (Belarus)"
+    ]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "Sports",
+    "question": "Which of these European cities was the first to host the modern Summer Olympic Games three times?",
+    "correct_answer": "London",
+    "incorrect_answers": ["Paris", "Athens", "Rome"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "Sports",
+    "question": "What is &ldquo;The Sport of Kings&rdquo;?",
+    "correct_answer": "Horse Racing",
+    "incorrect_answers": ["Chess", "Jousting", "Fencing"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "Sports",
+    "question": "Etihad Stadium is the home stadium for which team?",
+    "correct_answer": "Manchester City",
+    "incorrect_answers": ["Manchester United", "Arsenal", "Blackpool"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "Sports",
+    "question": "What team did England beat in the semi-final stage to win in the 1966 World Cup final?",
+    "correct_answer": "Portugal",
+    "incorrect_answers": ["West Germany", "Soviet Union", "Brazil"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "Sports",
+    "question": "Who won the 1998 Daytona 500?",
+    "correct_answer": "Dale Earnhardt",
+    "incorrect_answers": ["John Anderson", "Jeff Gordon", "Michael Walltrip"]
+  }
+]

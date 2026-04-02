@@ -3,7 +3,7 @@
 if (Session::has("current_quiz")) {
     $current_quiz                  = Session::get("current_quiz");
     $current_quiz_question_label   = $current_quiz["question"]["label"];
-    $current_quiz_question_options = array_map('htmlspecialchars', $current_quiz["question"]["options"]);
+    $current_quiz_question_options = $current_quiz["question"]["options"];
     $current_quiz_question_num     = $current_quiz["question"]["num"] + 1;
     $total_questions               = 10; // matches API amount=10
 } else {

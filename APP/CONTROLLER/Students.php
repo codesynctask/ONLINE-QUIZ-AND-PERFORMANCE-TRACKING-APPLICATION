@@ -88,6 +88,36 @@ class Students extends Controller
 
         // Marks calculation based on correct answers
         $current_quiz_session["solution"]["marks_obtained"] = $score_obtained;
+        
+        // Get current user ID and quiz ID from session
+        $user_id = Session::get("user_id");
+        
+        // Calculate percentage
+        $percentage = $total_questions > 0 ? ($marks_obtained / $total_questions) * 100 : 0;
+        
+        // Save quiz_data to database
+        $quiz_data_model = new Quiz_data();
+        $quiz_data = [
+            "user_id" => $user_id,
+            "category" => $category_name,
+            "difficulty" => $difficulty,
+            "start_time" => $current_quiz_session["quiz_updated_at"] ?? date('Y-m-d H:i:s')
+        ];
+        $quiz_data_model->create($quiz_data);
+        $last_inserted_quiz_id = $quiz_data_model->lastInsertId();
+        
+        // Save result to database
+        $results_model = new Results();
+        $result_data = [
+            "user_id" => $user_id,
+            "quiz_id" => $last_inserted_quiz_id ,
+            "score_obtained" => $score_obtained,
+            "total_questions" => $total_questions,
+            "percentage" => round($percentage, 2)
+        ];
+        $results_model->create($result_data);
+        
+        
         $data = [
             "result"=>[
                 "score_obtained"=>$score_obtained,
