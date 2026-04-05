@@ -6,6 +6,9 @@ class Controller{
     {
         $fileName = "../app/view/" . $fileName . ".view.php";
 
+        // Extract data array into individual variables
+        extract($data);
+
         // loading view files
         if (file_exists($fileName)) {
             require $fileName;

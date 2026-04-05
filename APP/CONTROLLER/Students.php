@@ -132,7 +132,13 @@ class Students extends Controller
     }
     public function leaderboard()
     {
-        $this->view("students/leaderboard");
+        $results_model = new Results();
+        
+        $leaderboard_data = $results_model->getLeaderboard();
+        
+        $leaderboard = $leaderboard_data;
+
+        $this->view("students/leaderboard", ["leaderboard" => $leaderboard]);
     }
     public function profile()
     {

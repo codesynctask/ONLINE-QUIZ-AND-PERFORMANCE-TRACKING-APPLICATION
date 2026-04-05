@@ -2,85 +2,93 @@
   {
     "type": "multiple",
     "difficulty": "hard",
-    "category": "Sports",
-    "question": "Which of these NHL players have never won a Hart Trophy for Regular Season MVP?",
-    "correct_answer": "Steve Yzerman",
-    "incorrect_answers": ["Chris Pronger", "Jose Theodore", "Henrik Sedin"]
+    "category": "Science: Computers",
+    "question": "Which of the following computer components can be built using only NAND gates?",
+    "correct_answer": "ALU",
+    "incorrect_answers": ["CPU", "RAM", "Register"]
   },
   {
     "type": "multiple",
     "difficulty": "hard",
-    "category": "Sports",
-    "question": "What tool lends it&#039;s name to a last-stone advantage in an end in Curling?",
-    "correct_answer": "Hammer",
-    "incorrect_answers": ["Wrench", "Drill", "Screwdriver"]
+    "category": "Science: Computers",
+    "question": "Who is the original author of the realtime physics engine called PhysX?",
+    "correct_answer": "NovodeX",
+    "incorrect_answers": ["Ageia", "Nvidia", "AMD"]
   },
   {
     "type": "multiple",
     "difficulty": "hard",
-    "category": "Sports",
-    "question": "Who is Manchester United&#039;s leading appearance maker?",
-    "correct_answer": "Ryan Giggs",
-    "incorrect_answers": ["David Beckham", "Wayne Rooney", "Eric Cantona"]
+    "category": "Science: Computers",
+    "question": "What major programming language does Unreal Engine 4 use?",
+    "correct_answer": "C++",
+    "incorrect_answers": ["Assembly", "C#", "ECMAScript"]
   },
   {
     "type": "multiple",
     "difficulty": "hard",
-    "category": "Sports",
-    "question": "With which doubles partner did John McEnroe have most success?",
-    "correct_answer": "Peter Fleming",
-    "incorrect_answers": ["Mark Woodforde", "Michael Stich", "Mary Carillo"]
-  },
-  {
-    "type": "multiple",
-    "difficulty": "hard",
-    "category": "Sports",
-    "question": "Which male player won the gold medal of table tennis singles in 2016 Olympics Games?",
-    "correct_answer": "Ma Long (China)",
+    "category": "Science: Computers",
+    "question": "What type of sound chip does the Super Nintendo Entertainment System (SNES) have?",
+    "correct_answer": "ADPCM Sampler",
     "incorrect_answers": [
-      "Zhang Jike (China)",
-      "Jun Mizutani (Japan)",
-      "Vladimir Samsonov (Belarus)"
+      "FM Synthesizer",
+      "Programmable Sound Generator (PSG)",
+      "PCM Sampler"
     ]
   },
   {
     "type": "multiple",
     "difficulty": "hard",
-    "category": "Sports",
-    "question": "Which of these European cities was the first to host the modern Summer Olympic Games three times?",
-    "correct_answer": "London",
-    "incorrect_answers": ["Paris", "Athens", "Rome"]
+    "category": "Science: Computers",
+    "question": "Which of the following is NOT a computer science algorithm?",
+    "correct_answer": "Float Sort",
+    "incorrect_answers": ["Bubble Sort", "Merge Sort", "Quick Sort"]
   },
   {
     "type": "multiple",
     "difficulty": "hard",
-    "category": "Sports",
-    "question": "What is &ldquo;The Sport of Kings&rdquo;?",
-    "correct_answer": "Horse Racing",
-    "incorrect_answers": ["Chess", "Jousting", "Fencing"]
+    "category": "Science: Computers",
+    "question": "The Harvard architecture for micro-controllers added which additional bus?",
+    "correct_answer": "Instruction",
+    "incorrect_answers": ["Address", "Data", "Control"]
   },
   {
     "type": "multiple",
     "difficulty": "hard",
-    "category": "Sports",
-    "question": "Etihad Stadium is the home stadium for which team?",
-    "correct_answer": "Manchester City",
-    "incorrect_answers": ["Manchester United", "Arsenal", "Blackpool"]
+    "category": "Science: Computers",
+    "question": "Which of these is not a key value of Agile software development?",
+    "correct_answer": "Comprehensive documentation",
+    "incorrect_answers": [
+      "Individuals and interactions",
+      "Customer collaboration",
+      "Responding to change"
+    ]
   },
   {
     "type": "multiple",
     "difficulty": "hard",
-    "category": "Sports",
-    "question": "What team did England beat in the semi-final stage to win in the 1966 World Cup final?",
-    "correct_answer": "Portugal",
-    "incorrect_answers": ["West Germany", "Soviet Union", "Brazil"]
+    "category": "Science: Computers",
+    "question": "CMOS is tech used for constructing integrated circuits. What does CMOS stand for?",
+    "correct_answer": "Complementary metal&ndash;oxide&ndash;semiconductor",
+    "incorrect_answers": [
+      "Complementary magnetic-ohms-semiconductor",
+      "Computer-made operating system",
+      "Computer-made oscillating static"
+    ]
   },
   {
     "type": "multiple",
     "difficulty": "hard",
-    "category": "Sports",
-    "question": "Who won the 1998 Daytona 500?",
-    "correct_answer": "Dale Earnhardt",
-    "incorrect_answers": ["John Anderson", "Jeff Gordon", "Michael Walltrip"]
+    "category": "Science: Computers",
+    "question": "The internet domain .fm is the country-code top-level domain for which Pacific Ocean island nation?",
+    "correct_answer": "Micronesia",
+    "incorrect_answers": ["Fiji", "Tuvalu", "Marshall Islands"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "Science: Computers",
+    "question": "What was the name of the security vulnerability found in Bash in 2014?",
+    "correct_answer": "Shellshock",
+    "incorrect_answers": ["Heartbleed", "Bashbug", "Stagefright"]
   }
 ]

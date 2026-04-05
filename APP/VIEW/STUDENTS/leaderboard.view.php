@@ -92,8 +92,56 @@
 
     </header>
 
-    <section id="hero"  class="py-4 px-[5vw] min-h-screen flex flex-col items-center justify-start ">
-        <h1 class="mt-[20vh]">STUDENT LEADERBOARD PAGE</h1>
+<section id="hero" class="py-4 px-[5vw] min-h-screen flex flex-col items-center justify-start">
+        <h1 class="mt-[20vh] mb-8 text-[clamp(1.8em,3.8vw,5.5vw)] font-bold text-center">🏆 STUDENT LEADERBOARD</h1>
+
+        <?php if (!empty($leaderboard)): ?>
+        <div class="w-full max-w-4xl overflow-x-auto rounded-xl shadow-md">
+            <table class="w-full text-left border-collapse">
+                <thead>
+                    <tr class="bg-orange-600 text-white text-center">
+                        <th class="py-3 px-4">Rank</th>
+                        <th class="py-3 px-4 text-left">Student</th>
+                        <th class="py-3 px-4">Quizzes Taken</th>
+                        <th class="py-3 px-4">Avg Score</th>
+                        <th class="py-3 px-4">Avg Percentage</th>
+                    </tr>
+                </thead>
+                <tbody class="text-[clamp(1rem,1.5vw,1.3rem)]">
+                    <?php foreach ($leaderboard as $index => $entry): ?>
+                    <?php
+                        $rank = $index + 1;
+                        $medal = match($rank) {
+                            1 => "🥇",
+                            2 => "🥈",
+                            3 => "🥉",
+                            default =>  $rank
+                        };
+                        $rowClass = match($rank) {
+                            1 => "bg-green-300 font-semibold",
+                            2 => "bg-green-200 font-semibold",
+                            3 => "bg-green-100 font-semibold",
+                            default => "bg-white hover:bg-gray-50"
+                        };  
+                    ?>
+                    <tr class="<?= $rowClass ?> border-b text-center transition">
+                        <td class="py-3 px-4"><?= $medal ?></td>
+                        <td class="py-3 px-4 text-left"><?= htmlspecialchars($entry['user_name']) ?></td>
+                        <td class="py-3 px-4"><?= $entry['total_quizzes'] ?></td>
+                        <td class="py-3 px-4"><?= $entry['avg_score'] ?></td>
+                        <td class="py-3 px-4"><?= $entry['avg_percentage'] ?>%</td>
+                    </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+        <?php else: ?>
+            <div class="flex flex-col items-center gap-3 mt-10 text-gray-400">
+                <i class="ri-bar-chart-fill text-6xl"></i>
+                <p class="text-lg font-medium">No results yet. Be the first to take a quiz!</p>
+            </div>
+        <?php endif; ?>
+
     </section>
 
         <!-- FOOTER -->
