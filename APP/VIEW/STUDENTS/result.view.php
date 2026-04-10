@@ -24,38 +24,39 @@
                 class="logo">
             <ul class="xcenter flex justify-between items-center gap-4 p-4 hidden md:flex">
                 <li>
-                    <a 
-                        href="<?= ROOT ?>/public/students/"
+                    <a href="<?= ROOT ?>/public/students/"
                         class="flex gap-2 justify-center item-center text-black hover:text-blue-500 truncate">
-                        <i class="ri-dashboard-horizontal-fill text-[1.6em] lg:text-[1em]"></i> <span class="hidden lg:block">Dashboard</span> 
+                        <i class="ri-dashboard-horizontal-fill text-[1.6em] lg:text-[1em]"></i> <span class="hidden lg:block">Dashboard</span>
                     </a>
                 </li>
                 <li>
-                    <a 
-                        href="<?= ROOT ?>/public/students/result"
+                    <a href="<?= ROOT ?>/public/students/result"
                         class="flex gap-2 justify-center item-center text-black hover:text-blue-500 truncate">
-                        <i class="ri-a-b text-[1.6em] lg:text-[1em]"></i> <span class="hidden lg:block">Result</span> 
+                        <i class="ri-a-b text-[1.6em] lg:text-[1em]"></i> <span class="hidden lg:block">Result</span>
                     </a>
                 </li>
                 <li>
-                    <a 
-                        href="<?= ROOT ?>/public/students/leaderboard"
+                    <a href="<?= ROOT ?>/public/students/leaderboard"
                         class="flex gap-2 justify-center item-center text-black hover:text-blue-500 truncate">
-                        <i class="ri-bar-chart-fill text-[1.6em] lg:text-[1em]"></i> <span class="hidden lg:block">Leaderboard</span> 
+                        <i class="ri-bar-chart-fill text-[1.6em] lg:text-[1em]"></i> <span class="hidden lg:block">Leaderboard</span>
                     </a>
                 </li>
             </ul>
 
             <div class="cta-buttons flex justify-between items-center gap-2 p-2 ">
-                <a 
-                    href="<?= ROOT ?>\public\auth\logout"
+
+                <!-- Logout -->
+                <form id="logout-form" action="<?= ROOT ?>/public/auth/logout" method="post" class="hidden"></form>
+                <button
+                    id="logout-btn"
+                    type="button"
                     class="flex gap-2 justify-center item-center bg-white btn hover:scale-105 w-fit">
-                    <i class="ri-logout-box-line"></i> <span class="hidden lg:block">Logout</span>  
-                </a>
-                <a 
-                    href="<?= ROOT ?>\public\students\profile"
+                    <i class="ri-logout-box-line"></i> <span class="hidden lg:block">Logout</span>
+                </button>
+
+                <a href="<?= ROOT ?>\public\students\profile"
                     class="flex gap-2 justify-center item-center btn btn-primary hover:scale-105 w-fit">
-                    <i class="ri-user-fill"></i> <span class="hidden lg:block">Profile</span> 
+                    <i class="ri-user-fill"></i> <span class="hidden lg:block">Profile</span>
                 </a>
 
                 <div class="responsive-nav-cont">
@@ -66,24 +67,20 @@
         </nav>
 
         <ul class="responsive-nav-cont backdrop-blur-md border-2 border-orange-600 w-fit p-8 flex gap-4 flex-col justify-start items-start fixed right-[5vw] rounded-lg hidden ">
-            <!-- TODO : with jQuery make it toggle on menu icon click  -->
             <li>
-                <a 
-                    href="<?= ROOT ?>/public/students "
+                <a href="<?= ROOT ?>/public/students/"
                     class="flex gap-2 justify-center item-center text-black hover:text-blue-500 truncate">
                     <i class="ri-dashboard-horizontal-fill text-[1.6em] lg:text-[1em] "></i> Home
                 </a>
             </li>
             <li>
-                <a 
-                    href="<?= ROOT ?>/public/students/result"
+                <a href="<?= ROOT ?>/public/students/result"
                     class="flex gap-2 justify-center item-center text-black hover:text-blue-500 truncate">
                     <i class="ri-a-b text-[1.6em] lg:text-[1em] "></i> Result
                 </a>
             </li>
             <li>
-                <a 
-                    href="<?= ROOT ?>/public/students/leaderboard"
+                <a href="<?= ROOT ?>/public/students/leaderboard"
                     class="flex gap-2 justify-center item-center text-black hover:text-blue-500 truncate">
                     <i class="ri-bar-chart-fill text-[1.6em] lg:text-[1em] "></i> Leaderboard
                 </a>
@@ -243,5 +240,51 @@
             </div>
         </div>
     </footer>
+
+    <script src="https://code.jquery.com/jquery-4.0.0.js"></script>
+    <script>
+    $(function () {
+
+        // Responsive nav toggle 
+        const $menuOpen  = $('.ri-menu-fill');
+        const $menuClose = $('.ri-close-large-line');
+        const $dropNav   = $('ul.responsive-nav-cont');
+
+        $menuOpen.on('click', function () {
+            $dropNav.removeClass('hidden');
+            $menuOpen.addClass('hidden');
+            $menuClose.removeClass('hidden');
+        });
+
+        $menuClose.on('click', function () {
+            $dropNav.addClass('hidden');
+            $menuOpen.removeClass('hidden');
+            $menuClose.addClass('hidden');
+        });
+
+        $dropNav.find('a').on('click', function () {
+            $dropNav.addClass('hidden');
+            $menuOpen.removeClass('hidden');
+            $menuClose.addClass('hidden');
+        });
+
+        $(document).on('click', function (e) {
+            if (!$(e.target).closest('header').length) {
+                $dropNav.addClass('hidden');
+                $menuOpen.removeClass('hidden');
+                $menuClose.addClass('hidden');
+            }
+        });
+
+        // Logout confirmation → POST form submit
+        $('#logout-btn').on('click', function () {
+            const confirmed = window.confirm('Are you sure you want to logout?');
+            if (confirmed) {
+                $('#logout-form').submit();
+            }
+        });
+
+    });
+    </script>
 </body>
 </html>

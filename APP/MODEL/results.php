@@ -24,4 +24,39 @@ class Results extends Model{
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function getUserStats(int $user_id): array {
+        // Total quizzes taken by user
+        $sql = "SELECT 
+                    COUNT(*) AS total_quizzes,
+                    MAX(percentage) AS best_percentage,
+                    MAX(score_obtained) AS best_score,
+                    AVG(percentage) AS avg_percentage
+                FROM {$this->table}
+                WHERE user_id = :user_id";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC) ?? [];
+    }
+
+    public function getUserRank(int $user_id): int {
+        // Rank based on best score among all users
+        $sql = "SELECT COUNT(*) + 1 AS user_rank
+                FROM (
+                    SELECT user_id, MAX(score_obtained) AS best_score
+                    FROM {$this->table}
+                    GROUP BY user_id
+                ) AS rankings
+                WHERE best_score > (
+                    SELECT COALESCE(MAX(score_obtained), 0)
+                    FROM {$this->table}
+                    WHERE user_id = :user_id
+                )";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
+        $stmt->execute();
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        return (int)($row['user_rank'] ?? 1);
+    }
 }

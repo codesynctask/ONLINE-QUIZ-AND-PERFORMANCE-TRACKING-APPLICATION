@@ -25,7 +25,7 @@
                 class="logo">
             <ul class="xcenter flex justify-between items-center gap-4 p-4 hidden md:flex">
                 <li>
-                    <a href="#hero"
+                    <a href="<?= ROOT ?>/public/students/"
                         class="flex gap-2 justify-center item-center text-black hover:text-blue-500 truncate">
                         <i class="ri-dashboard-horizontal-fill text-[1.6em] lg:text-[1em]"></i> <span class="hidden lg:block">Dashboard</span>
                     </a>
@@ -69,7 +69,7 @@
 
         <ul class="responsive-nav-cont backdrop-blur-md border-2 border-orange-600 w-fit p-8 flex gap-4 flex-col justify-start items-start fixed right-[5vw] rounded-lg hidden ">
             <li>
-                <a href="#hero"
+                <a href="<?= ROOT ?>/public/students/"
                     class="flex gap-2 justify-center item-center text-black hover:text-blue-500 truncate">
                     <i class="ri-dashboard-horizontal-fill text-[1.6em] lg:text-[1em] "></i> Home
                 </a>
@@ -92,35 +92,30 @@
 
     <section id="hero" class="py-4 px-[5vw] min-h-screen flex flex-col items-center justify-start ">
         <!-- STUDENT GREETINGS -->
-        <section class="relative border-[var(--orange)] border-2 mt-[5rem] flex flex-col md:flex-row w-[90vw] rounded-lg justify-start md:justify-between item-center p-8">
+        <section class="relative shadow-lg border-2 mt-[5rem] flex flex-col md:flex-row w-[90vw] rounded-lg justify-center md:justify-between items-center p-8">
             <div>
-                <h1 class="leading-none text-[clamp(2em,2.5vw,3.5vw)] font-bold mb-4 ">Welcome back , Deepak Sharma 👋 </h1>
-                <p class="">You have completed quiz n so far.<br> Your personal best is 90%. <br>You haven't taken any quizzes yet. Start your first one now.</p>
+                <h1 class="leading-none text-[clamp(2em,2.5vw,3.5vw)] font-bold mb-4 ">Welcome back , <?= Session::get("fullname") ?> 👋 </h1>
             </div>
-            <a href="<?= ROOT ?>/public/quiz/" class="btn hover:bg-orange-600 hover:text-white text-[clamp(1.4em,1.5vw,1.8em)] truncate w-full md:w-fit h-fit mt-8 py-4 px-12 flex justify-center items-center gap-4">Start new Quiz <i class="ri-arrow-right-long-line "></i> </a>
+            <a href="<?= ROOT ?>/public/quiz/" class="btn hover:bg-orange-600 hover:text-white text-[clamp(1.4em,1.5vw,1.8em)] truncate w-full md:w-fit h-fit  py-4 px-12 flex justify-center items-center gap-4">Start new Quiz <i class="ri-arrow-right-long-line "></i> </a>
         </section>
 
         <!-- STUDENTS STATS -->
         <section id="student-stats" class=" my-[5vh] flex flex-col md:flex-row w-[90vw] rounded-lg justify-center item-center gap-[3vw] p-4">
             <div class="stat-cont p-4 flex flex-col justify-start items-center gap-4">
                 <h3 class="uppercase  text-[clamp(1em,1.5vw,1.3em)]">total quizes</h3>
-                <h2 class="text-[clamp(2.5em,3vw,4em)] font-bold my-[-10px] ">1,200+</h2>
-                <h5 class=" text-[clamp(0.8em,3vw,1em)] text-center ">Registered Students</h5>
+                <h2 class="text-[clamp(2.5em,3vw,4em)] font-bold my-[-10px] "><?= $total_quizzes ?></h2>
             </div>
             <div class="stat-cont p-4 flex flex-col justify-start items-center gap-4">
                 <h3 class="uppercase  text-[clamp(1em,1.5vw,1.3em)]">Best Score</h3>
-                <h2 class="text-[clamp(2.5em,3vw,4em)] font-bold my-[-10px]  ">18,400+</h2>
-                <h5 class=" text-[clamp(0.8em,3vw,1em)] text-center ">Quizzes conducted</h5>
+                <h2 class="text-[clamp(2.5em,3vw,4em)] font-bold my-[-10px]  "><?= $best_score  ?></h2>
             </div>
             <div class="stat-cont p-4 flex flex-col justify-start items-center gap-4">
                 <h3 class="uppercase  text-[clamp(1em,1.5vw,1.3em)]">Average score</h3>
-                <h2 class="text-[clamp(2.5em,3vw,4em)] font-bold my-[-10px] ">94%</h2>
-                <h5 class=" text-[clamp(0.8em,3vw,1em)] text-center ">Average satisfaction rate</h5>
+                <h2 class="text-[clamp(2.5em,3vw,4em)] font-bold my-[-10px] "><?= $avg_percentage  ?>%</h2>
             </div>
             <div class="stat-cont p-4 flex flex-col justify-start items-center gap-4">
                 <h3 class="uppercase  text-[clamp(1em,1.5vw,1.3em)]">current rank</h3>
-                <h2 class="text-[clamp(2.5em,3vw,4em)] font-bold my-[-10px] ">15+</h2>
-                <h5 class=" text-[clamp(0.8em,3vw,1em)] text-center ">Subject categories</h5>
+                <h2 class="text-[clamp(2.5em,3vw,4em)] font-bold my-[-10px] "><?= $user_rank  ?></h2>
             </div>
         </section>
 
