@@ -163,7 +163,28 @@ class Students extends Controller
     }
     public function profile()
     {
-        $this->view("students/profile");
+        $user_id = Session::get("user_id");
+
+        $results_model = new Results();
+
+        // Fetch user stats from DB
+        $stats = $results_model->getUserStats($user_id);
+        $rank  = $results_model->getUserRank($user_id);
+
+        $total_quizzes   = $stats['total_quizzes']   ?? 0;
+        $best_score      = $stats['best_score']       ?? 0;
+        $best_percentage = $stats['best_percentage']  ?? 0;
+        $avg_percentage  = $stats['avg_percentage']   ?? 0;
+
+        $data = [
+            "total_quizzes"   => $total_quizzes,
+            "best_score"      => $best_score,
+            "best_percentage" => round($best_percentage, 2),
+            "avg_percentage"  => round($avg_percentage, 2),
+            "user_rank"       => $rank,
+        ];
+
+        $this->view("students/profile", $data);
     }
 }
 

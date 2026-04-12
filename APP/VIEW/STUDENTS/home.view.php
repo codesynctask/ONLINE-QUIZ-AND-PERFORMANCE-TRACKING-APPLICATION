@@ -94,7 +94,7 @@
         <!-- STUDENT GREETINGS -->
         <section class="relative shadow-lg border-2 mt-[5rem] flex flex-col md:flex-row w-[90vw] rounded-lg justify-center md:justify-between items-center p-8">
             <div>
-                <h1 class="leading-none text-[clamp(2em,2.5vw,3.5vw)] font-bold mb-4 ">Welcome back , <?= Session::get("fullname") ?> 👋 </h1>
+                <h1 class="leading-none text-[clamp(2em,2.5vw,3.5vw)] font-bold mb-4 ">Welcome , <?= Session::get("fullname") ?> 👋 </h1>
             </div>
             <a href="<?= ROOT ?>/public/quiz/" class="btn hover:bg-orange-600 hover:text-white text-[clamp(1.4em,1.5vw,1.8em)] truncate w-full md:w-fit h-fit  py-4 px-12 flex justify-center items-center gap-4">Start new Quiz <i class="ri-arrow-right-long-line "></i> </a>
         </section>

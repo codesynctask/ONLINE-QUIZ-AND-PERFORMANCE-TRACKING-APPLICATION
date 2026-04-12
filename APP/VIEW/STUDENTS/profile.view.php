@@ -89,8 +89,167 @@
 
     </header>
 
-    <section id="hero"  class="py-4 px-[5vw] min-h-screen flex flex-col items-center justify-start ">
-        <h1 class="mt-[20vh]">STUDENT profile PAGE</h1>
+    <section id="hero" class="py-4 px-[5vw] min-h-screen flex flex-col items-center justify-start pt-28">
+        
+        <!-- Profile Container -->
+        <div class="w-full max-w-4xl">
+            
+            <!-- Profile Header Card -->
+            <div class="border-2 border-orange-600 rounded-lg shadow-lg p-8 mb-8">
+                <div class="flex flex-col md:flex-row items-center gap-8">
+                    
+                    <!-- Profile Avatar -->
+                    <div class="flex-shrink-0">
+                        <div class="w-32 h-32 bg-gradient-to-br from-orange-400 to-orange-600 rounded-full flex items-center justify-center shadow-lg">
+                            <i class="ri-user-3-fill text-white text-5xl"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- Profile Info -->
+                    <div class="flex-grow text-center md:text-left">
+                        <h1 class="text-[clamp(2em,3vw,3em)] font-bold text-gray-900 mb-2"><?= Session::get("fullname") ?></h1>
+                        <p class="text-gray-600 text-lg mb-4"><i class="ri-mail-line"></i> <?= Session::get("email") ?? "Nill" ?></p>
+                        <div class="flex gap-4 justify-center md:justify-start">
+                            <span class="inline-block bg-orange-600 text-white px-4 py-2 rounded-lg text-sm font-semibold">
+                                <i class="ri-user-check-line"></i> Student
+                            </span>
+                            <span class="inline-block bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-semibold">
+                                <i class="ri-id-card-line"></i> ID: <?= Session::get("student_id") ?? Session::get("user_id") ?>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile Statistics -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                
+                <!-- Quick Stats Cards -->
+                <div class="bg-white border-2 border-gray-200 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-500 text-sm font-semibold uppercase">Total Quizzes Taken</p>
+                            <p class="text-4xl font-bold text-orange-600 mt-2"><?= isset($total_quizzes) ? $total_quizzes : '0' ?></p>
+                        </div>
+                        <i class="ri-file-list-3-line text-5xl text-orange-200"></i>
+                    </div>
+                </div>
+
+                <div class="bg-white border-2 border-gray-200 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-500 text-sm font-semibold uppercase">Best Score</p>
+                            <p class="text-4xl font-bold text-green-600 mt-2"><?= isset($best_score) ? $best_score : '0' ?></p>
+                        </div>
+                        <i class="ri-trophy-fill text-5xl text-green-200"></i>
+                    </div>
+                </div>
+
+                <div class="bg-white border-2 border-gray-200 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-500 text-sm font-semibold uppercase">Average Score</p>
+                            <p class="text-4xl font-bold text-blue-600 mt-2"><?= isset($avg_percentage) ? $avg_percentage : '0' ?></p>
+                        </div>
+                        <i class="ri-bar-chart-fill text-5xl text-blue-200"></i>
+                    </div>
+                </div>
+
+                <div class="bg-white border-2 border-gray-200 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-500 text-sm font-semibold uppercase">Current Rank</p>
+                            <p class="text-4xl font-bold text-purple-600 mt-2"><?= isset($user_rank) ? '#' . $user_rank : 'N/A' ?></p>
+                        </div>
+                        <i class="ri-medal-fill text-5xl text-purple-200"></i>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Account Information Section -->
+            <div class="bg-white border-2 border-gray-200 rounded-lg shadow-md p-8 mb-8">
+                <div class="flex items-center mb-6 pb-4 border-b-2 border-gray-200">
+                    <i class="ri-information-line text-2xl text-orange-600 mr-3"></i>
+                    <h2 class="text-2xl font-bold text-gray-900">Account Information</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    
+                    <div>
+                        <label class="text-sm font-semibold text-gray-600 uppercase mb-2 block">Full Name</label>
+                        <div class="bg-gray-50 border border-gray-300 rounded-lg px-4 py-3 text-gray-800">
+                            <?= Session::get("fullname") ?? "Nill" ?>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="text-sm font-semibold text-gray-600 uppercase mb-2 block">Email Address</label>
+                        <div class="bg-gray-50 border border-gray-300 rounded-lg px-4 py-3 text-gray-800">
+                            <?= Session::get("email") ?? "Nill" ?>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="text-sm font-semibold text-gray-600 uppercase mb-2 block">Student ID</label>
+                        <div class="bg-gray-50 border border-gray-300 rounded-lg px-4 py-3 text-gray-800">
+                            <?= Session::get("student_id") ?? "Nill" ?>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="text-sm font-semibold text-gray-600 uppercase mb-2 block">Account Type</label>
+                        <div class="bg-gray-50 border border-gray-300 rounded-lg px-4 py-3 text-gray-800">
+                            <span class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm font-semibold">
+                                Student
+                            </span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Achievement Section -->
+            <div class="bg-white border-2 border-gray-200 rounded-lg shadow-md p-8 mb-8 opacity-50 cursor-not-allowed ">
+                <div class="flex items-center mb-6 pb-4 border-b-2 border-gray-200">
+                    <i class="ri-award-fill text-2xl text-orange-600 mr-3"></i>
+                    <h2 class="text-2xl font-bold text-gray-900">Achievements</h2>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    
+                    <div class="flex flex-col items-center p-4 bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg border border-yellow-200 hover:shadow-md transition-shadow">
+                        <i class="ri-star-fill text-3xl text-yellow-500 mb-2"></i>
+                        <p class="text-xs font-semibold text-center text-gray-700">Quiz Master</p>
+                    </div>
+
+                    <div class="flex flex-col items-center p-4 bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg border border-blue-200 hover:shadow-md transition-shadow">
+                        <i class="ri-fire-fill text-3xl text-blue-500 mb-2"></i>
+                        <p class="text-xs font-semibold text-center text-gray-700">Streak Warrior</p>
+                    </div>
+
+                    <div class="flex flex-col items-center p-4 bg-gradient-to-br from-green-50 to-green-100 rounded-lg border border-green-200 hover:shadow-md transition-shadow">
+                        <i class="ri-hearts-fill text-3xl text-green-500 mb-2"></i>
+                        <p class="text-xs font-semibold text-center text-gray-700">Quiz Lover</p>
+                    </div>
+
+                    <div class="flex flex-col items-center p-4 bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg border border-purple-200 hover:shadow-md transition-shadow">
+                        <i class="ri-trophy-fill text-3xl text-purple-500 mb-2"></i>
+                        <p class="text-xs font-semibold text-center text-gray-700">Top Performer</p>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-col md:flex-row gap-4 justify-center mb-8">
+                <a href="<?= ROOT ?>/public/students/" class="btn btn-primary flex items-center justify-center w-fit gap-2 hover:scale-105 transition-transform">
+                    <i class="ri-arrow-left-line"></i> Back to Dashboard
+                </a>
+            </div>
+
+        </div>
+
     </section>
 
         <!-- FOOTER -->
