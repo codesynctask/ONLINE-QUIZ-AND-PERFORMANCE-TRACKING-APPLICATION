@@ -103,6 +103,7 @@ if (Session::has("current_quiz")) {
                 novalidate>
 
                 <input type="hidden" name="direction" id="direction-input" value="next">
+                <input type="hidden" name="timed_out" id="timed-out-input" value="0">
 
                 <ul class="w-full flex justify-center items-center gap-4 flex-col">
                     <li class="w-full flex my-px">
@@ -164,20 +165,20 @@ if (Session::has("current_quiz")) {
         const $errorMsg    = $('#validation-error');
         const $direction   = $('#direction-input');
 
-        // 1. Clear error state on user selectection
+        // 1. Clear error state on user selection
         $radios.on('change', function () {
             $errorMsg.hide();
             $optionItems.removeClass('option-error');
         });
 
-        // 2. Previous button 
+        // 2. Previous button
         $('#btn-prev').on('click', function () {
             if ($(this).prop('disabled')) return;
             $direction.val('prev');
             $form.off('submit').submit();
         });
 
-        // 3. Next — validate + submitting
+        // 3. Next — validate + submit
         $form.on('submit', function (e) {
             if ($direction.val() === 'prev') return;
 
@@ -194,42 +195,53 @@ if (Session::has("current_quiz")) {
             $direction.val('next');
         });
 
-        // 4. Cancel button 
+        // 4. Cancel button
         $('#cancel-btn').on('click', function () {
             const confirmed = window.confirm('Are you sure you want to cancel the quiz? Your progress will be lost.');
             if (confirmed) {
+                localStorage.removeItem('quiz_end_time'); 
                 window.location.href = '<?= ROOT ?>/public/quiz/';
             }
         });
 
-        // 5. Countdown timer (5 minutes)
-        let totalSeconds = 5 * 60;
-        const $display   = $('#timer-display');
-        const $timer     = $('#quiz-timer');
+        // 5. Countdown timer
+        const TIMER_KEY = 'quiz_end_time';
+        const DURATION  = 5 * 60 * 1000; // 5 minutes in ms
+
+        // On first question, create the end time; on later questions, reuse it
+        let endTime = localStorage.getItem(TIMER_KEY);
+
+        if (!endTime) {
+            endTime = Date.now() + DURATION;
+            localStorage.setItem(TIMER_KEY, endTime);
+        }
+
+        endTime = parseInt(endTime, 10);
+
+        const $display = $('#timer-display');
+        const $timer   = $('#quiz-timer');
 
         function updateTimer() {
-            const mins = Math.floor(totalSeconds / 60);
-            const secs = totalSeconds % 60;
+            const remaining = Math.max(0, Math.floor((endTime - Date.now()) / 1000));
+            const mins = Math.floor(remaining / 60);
+            const secs = remaining % 60;
             $display.text(mins + ':' + String(secs).padStart(2, '0'));
 
-            // Warn at 60 seconds remaining
-            if (totalSeconds <= 60) {
+            if (remaining <= 60) {
                 $timer.addClass('timer-warning');
             }
 
-            // Time's up — auto submit with whatever answer is selected
-            if (totalSeconds <= 0) {
+            if (remaining <= 0) {
                 clearInterval(timerInterval);
+                localStorage.removeItem(TIMER_KEY);
+                $('#timed-out-input').val('1');
                 $direction.val('next');
                 $form.off('submit').submit();
-                return;
             }
-
-            totalSeconds--;
         }
 
-        updateTimer(); // run immediately so there's no 1s blank delay
-        const timerInterval = setInterval(updateTimer, 1000);
+        updateTimer(); 
+        const timerInterval = setInterval(updateTimer, 10);
 
     });
     </script>

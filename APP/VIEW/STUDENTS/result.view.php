@@ -173,7 +173,17 @@
         for ($i = 0; $i < count($data["quiz_file_questions"]); $i++) {
 
             $correct = trim(html_entity_decode($data['quiz_file_questions'][$i]['correct_answer']));
-            $selected = trim(html_entity_decode($data['all_selected_options'][$i]));
+            $selected = trim(html_entity_decode($data['all_selected_options'][$i] ?? ''));
+            if ($selected === '') {
+                $status          = "<span class='text-gray-400 italic'>Not answered</span>";
+                $selected_display = "<span class='text-gray-400 italic'>—</span>";
+            } elseif (strtolower($correct) === strtolower($selected)) {
+                $status          = "<span class='text-green-600 font-semibold'>✓ Correct</span>";
+                $selected_display = htmlspecialchars($selected);
+            } else {
+                $status          = "<span class='text-red-600 font-semibold'>✗ Wrong</span>";
+                $selected_display = htmlspecialchars($selected);
+            }       
 
             echo "
             <tr class='odd:bg-white even:bg-gray-50 hover:bg-gray-200'>
@@ -192,7 +202,6 @@
 
 
             ?>
-            </tbody>
 
         </table>
     </div>
@@ -283,6 +292,8 @@
                 $('#logout-form').submit();
             }
         });
+
+        localStorage.removeItem('quiz_end_time');
 
     });
     </script>

@@ -63,6 +63,7 @@ class Quiz extends Controller{
         Session::set("current_quiz", $session);
     }
 
+
     private function process_answer() {
         $session         = Session::get("current_quiz");
         $quiz_data       = json_decode(File::read(QUIZ_DATA_FILE), true);
@@ -70,44 +71,45 @@ class Quiz extends Controller{
         $current_num     = $session["question"]["num"];
         $direction       = $_POST["direction"] ?? "next";
 
-        // Going back — reload previous question, don't save answer
+        // ── Timer expired — save current answer (if any) and go to results ──
+        if (!empty($_POST["timed_out"])) {
+            if (isset($_POST["answer"])) {
+                $selected = trim(html_entity_decode($_POST["answer"]));
+                $session["solution"]["all_selected_options"][$current_num] = $selected;
+            }
+            $session["is_completed"]    = true;
+            $session["question"]["num"] = $current_num;
+            Session::set("current_quiz", $session);
+            header("Location: " . ROOT . "/public/students/result/");
+            exit();
+        }
+
+        // ── Going back — reload previous question, don't save answer ──
         if ($direction === "prev" && $current_num > 0) {
             $this->load_question_into_session($current_num - 1);
             return;
         }
 
-        // 1. Saving answer for the CURRENT question
+        // ── 1. Save answer for the current question ──
         if ($direction === "next" && isset($_POST["answer"])) {
             $selected = trim(html_entity_decode($_POST["answer"]));
             $session["solution"]["all_selected_options"][$current_num] = $selected;
         }
 
-        // if (1) {
-        //     $correct = $quiz_data[$current_num]["correct_answer"] ?? null;
-
-        //     $correct_clean = trim(html_entity_decode($correct));
-
-        //     if ($correct_clean !== null && strtolower($selected) === strtolower($correct_clean)) {
-        //         $session["solution"]["marks_obtained"] += 1;
-        // }
-
-
-        // 2.next question number
+        // ── 2. Calculate next question number ──
         $next_num = $current_num + 1;
 
-        // 3. is quiz completed 
+        // ── 3. Quiz completed ──
         if ($next_num >= $total_questions) {
             $session["is_completed"]    = true;
             $session["question"]["num"] = $next_num;
-            Session::set("current_quiz", $session); // persist final answer + score
-            
-            
+            Session::set("current_quiz", $session);
             header("Location: " . ROOT . "/public/students/result/");
             exit();
         }
 
-        // 4. Loading next question into session
-         $options = array_merge(
+        // ── 4. Load next question into session ──
+        $options = array_merge(
             $quiz_data[$next_num]["incorrect_answers"],
             [$quiz_data[$next_num]["correct_answer"]]
         );
