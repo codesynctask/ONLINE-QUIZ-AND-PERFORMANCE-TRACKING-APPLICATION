@@ -41,15 +41,15 @@ class Results extends Model{
     }
 
     public function getUserRank(int $user_id): int {
-        // Rank based on best score among all users
+        // Rank based on average score among all users
         $sql = "SELECT COUNT(*) + 1 AS user_rank
                 FROM (
-                    SELECT user_id, MAX(score_obtained) AS best_score
+                    SELECT user_id, AVG(score_obtained) AS avg_score
                     FROM {$this->table}
                     GROUP BY user_id
                 ) AS rankings
-                WHERE best_score > (
-                    SELECT COALESCE(MAX(score_obtained), 0)
+                WHERE avg_score > (
+                    SELECT COALESCE(AVG(score_obtained), 0)
                     FROM {$this->table}
                     WHERE user_id = :user_id
                 )";

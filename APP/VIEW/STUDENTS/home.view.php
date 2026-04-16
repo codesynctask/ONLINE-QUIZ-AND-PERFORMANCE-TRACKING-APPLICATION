@@ -115,7 +115,7 @@
             </div>
             <div class="stat-cont p-4 flex flex-col justify-start items-center gap-4">
                 <h3 class="uppercase  text-[clamp(1em,1.5vw,1.3em)]">current rank</h3>
-                <h2 class="text-[clamp(2.5em,3vw,4em)] font-bold my-[-10px] "><?= $user_rank  ?></h2>
+                <h2 class="text-[clamp(2.5em,3vw,4em)] font-bold my-[-10px] "><?= isset($user_rank) ? '#' . $user_rank : 'N/A' ?></h2>
             </div>
         </section>
 

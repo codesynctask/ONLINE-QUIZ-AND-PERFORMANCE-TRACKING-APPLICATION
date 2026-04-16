@@ -100,26 +100,40 @@
                         <th class="py-3 px-4">Rank</th>
                         <th class="py-3 px-4 text-left">Student</th>
                         <th class="py-3 px-4">Quizzes Taken</th>
-                        <th class="py-3 px-4">Avg Score</th>
+                        <th class="py-3 px-4">Best Score</th>
                         <th class="py-3 px-4">Avg Percentage</th>
                     </tr>
                 </thead>
                 <tbody class="text-[clamp(1rem,1.5vw,1.3rem)]">
+                    <?php
+                        $prev_avg = null;
+                        $prev_rank = 0;
+                    ?>
                     <?php foreach ($leaderboard as $index => $entry): ?>
                     <?php
-                        $rank = $index + 1;
-                        $medal = match($rank) {
+                        $position = $index + 1;
+                        $avg = isset($entry['avg_score']) ? (float)$entry['avg_score'] : null;
+                        if ($prev_avg !== null && $avg === $prev_avg) {
+                            $display_rank = $prev_rank;
+                        } else {
+                            $display_rank = $position;
+                        }
+
+                        $medal = match($display_rank) {
                             1 => "🥇",
                             2 => "🥈",
                             3 => "🥉",
-                            default =>  $rank
+                            default =>  $display_rank
                         };
-                        $rowClass = match($rank) {
+                        $rowClass = match($display_rank) {
                             1 => "bg-green-300 font-semibold",
                             2 => "bg-green-200 font-semibold",
                             3 => "bg-green-100 font-semibold",
                             default => "bg-white hover:bg-gray-50"
-                        };  
+                        };
+
+                        $prev_avg = $avg;
+                        $prev_rank = $display_rank;
                     ?>
                     <tr class="<?= $rowClass ?> border-b text-center transition">
                         <td class="py-3 px-4"><?= $medal ?></td>
