@@ -7,6 +7,7 @@ spl_autoload_register(function ($className) {
 
 // import of file for index page
 require "config.php";
+require "Crypt.php";
 require "File.php";
 require "Session.php";
 require "Cookies.php";

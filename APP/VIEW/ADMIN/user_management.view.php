@@ -170,11 +170,12 @@
                     <table id="faculty-table" class="min-w-full divide-y divide-gray-200">
                         <thead class="bg-gray-50">
                             <tr>
-                                <th class="px-4 py-2 text-left text-sm font-medium">#</th>
-                                <th class="px-4 py-2 text-left text-sm font-medium">Full Name</th>
-                                <th class="px-4 py-2 text-left text-sm font-medium">Username</th>
-                                <th class="px-4 py-2 text-left text-sm font-medium">Category Access</th>
-                                <th class="px-4 py-2 text-left text-sm font-medium">Actions</th>
+                                <th class="px-4 py-2 text-left text-sm font-bold">#</th>
+                                <th class="px-4 py-2 text-left text-sm font-bold">Full Name</th>
+                                <th class="px-4 py-2 text-left text-sm font-bold">Username</th>
+                                <th class="px-4 py-2 text-left text-sm font-bold">Password</th>
+                                <th class="px-4 py-2 text-left text-sm font-bold">Category</th>
+                                <th class="px-4 py-2 text-left text-sm font-bold">Actions</th>
                             </tr>
                         </thead>
                         <tbody class="bg-white" id="faculty-tbody">
@@ -238,13 +239,13 @@
 
         function renderStudentRow(i, s) {
             return `
-                    <tr data-id="${s.id}">
+                    <tr data-id="${s.user_id}">
                         <td class="px-4 py-2">${i}</td>
-                        <td class="px-4 py-2">${s.name}</td>
-                        <td class="px-4 py-2">${s.email}</td>
-                        <td class="px-4 py-2">${s.registered}</td>
+                        <td class="px-4 py-2">${s.fullname || 'N/A'}</td>
+                        <td class="px-4 py-2">${s.username || 'N/A'}</td>
+                        <td class="px-4 py-2">${s.password || 'N/A'}</td>
                         <td class="px-4 py-2">
-                            <button class="btn btn-danger btn-sm delete-student" data-id="${s.id}">Delete</button>
+                            <button class="btn btn-danger btn-sm delete-student" data-id="${s.user_id}">Delete</button>
                         </td>
                     </tr>
                 `;
@@ -252,13 +253,14 @@
 
         function renderFacultyRow(i, f) {
             return `
-                    <tr data-id="${f.id}">
+                    <tr data-id="${f.user_id}">
                         <td class="px-4 py-2">${i}</td>
-                        <td class="px-4 py-2">${f.name}</td>
-                        <td class="px-4 py-2">${f.email}</td>
-                        <td class="px-4 py-2">${f.category_name || '—'}</td>
+                        <td class="px-4 py-2">${f.fullname || 'N/A'}</td>
+                        <td class="px-4 py-2">${f.username || 'N/A'}</td>
+                        <td class="px-4 py-2">${f.password || 'N/A'}</td>
+                        <td class="px-4 py-2">${f.category || 'N/A'}</td>
                         <td class="px-4 py-2">
-                            <button class="btn btn-danger btn-sm delete-faculty" data-id="${f.id}">Delete</button>
+                            <button class="btn btn-danger btn-sm delete-faculty" data-id="${f.user_id}">Delete</button>
                         </td>
                     </tr>
                 `;
@@ -270,7 +272,7 @@
                 .done(function (res) {
                     const list = Array.isArray(res) ? res : [];
                     if (!list.length) {
-                        $('#students-tbody').html('<tr><td colspan="5" class="p-4">No students found</td></tr>');
+                        $('#students-tbody').html('<tr><td colspan="5" class="p-4 text-center">No students found</td></tr>');
                         return;
                     }
                     const html = list.map((s, idx) => renderStudentRow(idx + 1, s)).join('');
@@ -282,24 +284,23 @@
         }
 
         function loadFaculty() {
-            $('#faculty-tbody').html('<tr><td colspan="5" class="p-4">Loading...</td></tr>');
+            $('#faculty-tbody').html('<tr><td colspan="6" class="p-4">Loading...</td></tr>');
             $.get(API_BASE + '/faculty')
                 .done(function (res) {
                     const list = Array.isArray(res) ? res : [];
                     if (!list.length) {
-                        $('#faculty-tbody').html('<tr><td colspan="5" class="p-4">No faculty found</td></tr>');
+                        $('#faculty-tbody').html('<tr><td colspan="6" class="p-4">No faculty found</td></tr>');
                         return;
                     }
                     const html = list.map((f, idx) => renderFacultyRow(idx + 1, f)).join('');
                     $('#faculty-tbody').html(html);
                 })
                 .fail(function () {
-                    $('#faculty-tbody').html('<tr><td colspan="5" class="p-4 text-red-600">Failed to load faculty</td></tr>');
+                    $('#faculty-tbody').html('<tr><td colspan="6" class="p-4 text-red-600">Failed to load faculty</td></tr>');
                 });
         }
 
 
-        $(function () {
             // initial load
             loadStudents();
             loadFaculty();
@@ -339,15 +340,26 @@
             $('#faculty-create-form').on('submit', function (e) {
                 e.preventDefault();
                 const payload = {
-                    name: $('#faculty-name').val(),
-                    email: $('#faculty-email').val(),
-                    category_id: $('#faculty-category').val()
+                    fullname: $('#faculty-name').val(),
+                    username: $('#faculty-username').val(),
+                    password: $('#faculty-password').val(),
+                    category: $('#faculty-category').val()
                 };
-                $.post(API_BASE + '/faculty', payload)
-                    .done(function () { $('#faculty-name,#faculty-email').val(''); loadFaculty(); })
-                    .fail(function () { alert('Failed to create faculty'); });
+                $.ajax({
+                    url: API_BASE + '/faculty',
+                    method: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(payload),
+                    success: function () { 
+                        $('#faculty-name,#faculty-username,#faculty-password').val(''); 
+                        alert('Faculty created successfully');
+                        loadFaculty(); 
+                    },
+                    error: function (xhr) { 
+                        alert('Failed to create faculty: ' + (xhr.responseJSON?.message || 'Unknown error'));
+                    }
+                });
             });
-        });
 
 
 

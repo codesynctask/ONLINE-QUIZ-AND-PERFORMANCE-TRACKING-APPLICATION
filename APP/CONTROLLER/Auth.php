@@ -43,8 +43,8 @@ class Auth extends Controller
         // Creating new user
         $newUser = [
             "username"=> $username,
-            "password"=> password_hash($password, PASSWORD_BCRYPT),
-            "role"=> "student", //default role
+            "password"=> Crypt::encrypt($password),
+            "role"=> "Student", //default role
             "fullname"=> $fullname,
         ];
         $users->create($newUser);
@@ -83,7 +83,20 @@ class Auth extends Controller
         $user_id = $usersData["user_id"];
         $fullname = $usersData["fullname"];
 
-        if (!password_verify($password, $usersPassword)) {
+        // Check password - handle both encrypted and hashed passwords
+        $passwordMatch = false;
+        
+        // Try encrypted password (new format)
+        $decrypted = Crypt::decrypt($usersPassword);
+        if ($decrypted === $password) {
+            $passwordMatch = true;
+        } 
+        // Try hashed password (old format)
+        elseif (password_verify($password, $usersPassword)) {
+            $passwordMatch = true;
+        }
+
+        if (!$passwordMatch) {
             $this->json_response(["msg" => "Invalid credentials"], 401);
             return;
         }
