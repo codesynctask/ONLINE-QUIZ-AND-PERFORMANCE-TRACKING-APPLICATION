@@ -112,7 +112,8 @@
                     <?php foreach ($leaderboard as $index => $entry): ?>
                     <?php
                         $position = $index + 1;
-                        $avg = isset($entry['avg_score']) ? (float)$entry['avg_score'] : null;
+                        // Rank tie logic should be based on avg_percentage
+                        $avg = isset($entry['avg_percentage']) ? (float)$entry['avg_percentage'] : null;
                         if ($prev_avg !== null && $avg === $prev_avg) {
                             $display_rank = $prev_rank;
                         } else {
@@ -139,8 +140,8 @@
                         <td class="py-3 px-4"><?= $medal ?></td>
                         <td class="py-3 px-4 text-left"><?= htmlspecialchars($entry['user_name']) ?></td>
                         <td class="py-3 px-4"><?= $entry['total_quizzes'] ?></td>
-                        <td class="py-3 px-4"><?= $entry['avg_score'] ?></td>
-                        <td class="py-3 px-4"><?= $entry['avg_percentage'] ?>%</td>
+                        <td class="py-3 px-4"><?= htmlspecialchars($entry['best_score']) ?></td>
+                        <td class="py-3 px-4"><?= number_format((float)($entry['avg_percentage'] ?? 0), 2) ?>%</td>
                     </tr>
                     <?php endforeach; ?>
                 </tbody>
