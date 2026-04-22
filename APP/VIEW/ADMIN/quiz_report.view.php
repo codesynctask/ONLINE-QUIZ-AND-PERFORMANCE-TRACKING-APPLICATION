@@ -86,8 +86,82 @@
     </header>
 
     <main class="pt-28 px-[5vw]">
-        <section class="max-w-6xl mx-auto">
-            <h1 class="text-3xl font-bold mb-4">Quiz report</h1>
+        <section class="max-w-6xl mx-auto border-2 rounded-lg p-10 bg-white mb-20">
+            <h1 class="text-4xl font-bold text-white bg-orange-600 text-center py-5 px-5 rounded mb-8 tracking-wide">Quiz Report</h1>
+
+            <!-- First Report Card -->
+            <div class=" p-6 mb-8 rounded-lg hover:shadow-md transition-shadow duration-200 last:mb-0">
+                <div class="text-2xl font-semibold text-black pb-3 mb-5 border-b-4 border-orange-600">Most played quiz catgeory</div>
+                <div class="overflow-x-auto">
+                    <table class="w-full border-collapse bg-white rounded overflow-hidden">
+                        <thead class="bg-orange-50">
+                            <tr>
+                                <th class="px-4 py-3.5 text-left font-semibold text-black border-b-2 border-gray-800 text-sm tracking-wide">Difficulty</th>
+                                <th class="px-4 py-3.5 text-left font-semibold text-black border-b-2 border-gray-800 text-sm tracking-wide">max.marks</th>
+                                <th class="px-4 py-3.5 text-left font-semibold text-black border-b-2 border-gray-800 text-sm tracking-wide">min.marks</th>
+                                <th class="px-4 py-3.5 text-left font-semibold text-black border-b-2 border-gray-800 text-sm tracking-wide">average.marks</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="hover:bg-orange-100 transition-colors duration-150">
+                                <td class="px-4 py-3 border-b border-gray-300 text-black text-sm">Easy</td>
+                                <td class="px-4 py-3 border-b border-gray-300 text-black text-sm">95</td>
+                                <td class="px-4 py-3 border-b border-gray-300 text-black text-sm">65</td>
+                                <td class="px-4 py-3 border-b border-gray-300 text-black text-sm">82</td>
+                            </tr>
+                            <tr class="hover:bg-orange-100 transition-colors duration-150">
+                                <td class="px-4 py-3 border-b border-gray-300 text-black text-sm">Medium</td>
+                                <td class="px-4 py-3 border-b border-gray-300 text-black text-sm">88</td>
+                                <td class="px-4 py-3 border-b border-gray-300 text-black text-sm">52</td>
+                                <td class="px-4 py-3 border-b border-gray-300 text-black text-sm">71</td>
+                            </tr>
+                            <tr class="hover:bg-orange-100 transition-colors duration-150">
+                                <td class="px-4 py-3 text-black text-sm">Hard</td>
+                                <td class="px-4 py-3 text-black text-sm">75</td>
+                                <td class="px-4 py-3 text-black text-sm">35</td>
+                                <td class="px-4 py-3 text-black text-sm">58</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Second Report Card -->
+            <div class=" p-6 rounded-lg hover:shadow-md transition-shadow duration-200">
+                <div class="text-2xl font-semibold text-black pb-3 mb-5 border-b-4 border-orange-600">Least played quiz catgeory</div>
+                <div class="overflow-x-auto">
+                    <table class="w-full border-collapse bg-white rounded overflow-hidden">
+                        <thead class="bg-orange-50">
+                            <tr>
+                                <th class="px-4 py-3.5 text-left font-semibold text-black border-b-2 border-gray-800 text-sm tracking-wide">Difficulty</th>
+                                <th class="px-4 py-3.5 text-left font-semibold text-black border-b-2 border-gray-800 text-sm tracking-wide">max.marks</th>
+                                <th class="px-4 py-3.5 text-left font-semibold text-black border-b-2 border-gray-800 text-sm tracking-wide">min.marks</th>
+                                <th class="px-4 py-3.5 text-left font-semibold text-black border-b-2 border-gray-800 text-sm tracking-wide">average.marks</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="hover:bg-orange-100 transition-colors duration-150">
+                                <td class="px-4 py-3 border-b border-gray-300 text-black text-sm">Easy</td>
+                                <td class="px-4 py-3 border-b border-gray-300 text-black text-sm">92</td>
+                                <td class="px-4 py-3 border-b border-gray-300 text-black text-sm">68</td>
+                                <td class="px-4 py-3 border-b border-gray-300 text-black text-sm">80</td>
+                            </tr>
+                            <tr class="hover:bg-orange-100 transition-colors duration-150">
+                                <td class="px-4 py-3 border-b border-gray-300 text-black text-sm">Medium</td>
+                                <td class="px-4 py-3 border-b border-gray-300 text-black text-sm">85</td>
+                                <td class="px-4 py-3 border-b border-gray-300 text-black text-sm">48</td>
+                                <td class="px-4 py-3 border-b border-gray-300 text-black text-sm">68</td>
+                            </tr>
+                            <tr class="hover:bg-orange-100 transition-colors duration-150">
+                                <td class="px-4 py-3 text-black text-sm">Hard</td>
+                                <td class="px-4 py-3 text-black text-sm">72</td>
+                                <td class="px-4 py-3 text-black text-sm">32</td>
+                                <td class="px-4 py-3 text-black text-sm">55</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </section>
     </main>
 
