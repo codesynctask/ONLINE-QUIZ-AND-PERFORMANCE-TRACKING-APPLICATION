@@ -95,14 +95,12 @@
         <div class="w-full max-w-4xl">
             
             <!-- Profile Header Card -->
-            <div class="border-2 border-orange-600 rounded-lg shadow-lg p-8 mb-8">
+            <div class="border-2 rounded-lg shadow-lg p-8 mb-8">
                 <div class="flex flex-col md:flex-row items-center gap-8">
                     
                     <!-- Profile Avatar -->
                     <div class="flex-shrink-0">
-                        <div class="w-32 h-32 bg-gradient-to-br from-orange-400 to-orange-600 rounded-full flex items-center justify-center shadow-lg">
-                            <i class="ri-user-3-fill text-white text-5xl"></i>
-                        </div>
+                        <img src="<?= ROOT ?>/public/assets/imgs/admin_logo.jpg" class="w-32 h-32 object-cover bg-gradient-to-br from-orange-400 to-orange-600 rounded-full flex items-center justify-center shadow-lg" src="<?= ROOT ?>/public/assets/images/default-avatar.png" alt="Profile Avatar">
                     </div>
                     
                     <!-- Profile Info -->
@@ -120,53 +118,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Profile Statistics -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                
-                <!-- Quick Stats Cards -->
-                <div class="bg-white border-2 border-gray-200 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <p class="text-gray-500 text-sm font-semibold uppercase">Total Quizzes Taken</p>
-                            <p class="text-4xl font-bold text-orange-600 mt-2"><?= isset($total_quizzes) ? $total_quizzes : '0' ?></p>
-                        </div>
-                        <i class="ri-file-list-3-line text-5xl text-orange-200"></i>
-                    </div>
-                </div>
-
-                <div class="bg-white border-2 border-gray-200 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <p class="text-gray-500 text-sm font-semibold uppercase">Best Score</p>
-                            <p class="text-4xl font-bold text-green-600 mt-2"><?= isset($best_score) ? $best_score : '0' ?></p>
-                        </div>
-                        <i class="ri-trophy-fill text-5xl text-green-200"></i>
-                    </div>
-                </div>
-
-                <div class="bg-white border-2 border-gray-200 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <p class="text-gray-500 text-sm font-semibold uppercase">Average Score</p>
-                            <p class="text-4xl font-bold text-blue-600 mt-2"><?= isset($avg_percentage) ? $avg_percentage : '0' ?></p>
-                        </div>
-                        <i class="ri-bar-chart-fill text-5xl text-blue-200"></i>
-                    </div>
-                </div>
-
-                <div class="bg-white border-2 border-gray-200 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <p class="text-gray-500 text-sm font-semibold uppercase">Current Rank</p>
-                            <p class="text-4xl font-bold text-purple-600 mt-2"><?= isset($user_rank) ? '#' . $user_rank : 'N/A' ?></p>
-                        </div>
-                        <i class="ri-medal-fill text-5xl text-purple-200"></i>
-                    </div>
-                </div>
-
-            </div>
-
 
 
             <!-- Action Buttons -->
