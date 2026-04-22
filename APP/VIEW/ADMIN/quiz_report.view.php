@@ -91,7 +91,8 @@
 
             <!-- First Report Card -->
             <div class=" p-6 mb-8 rounded-lg hover:shadow-md transition-shadow duration-200 last:mb-0">
-                <div class="text-2xl font-semibold text-black pb-3 mb-5 border-b-4 border-orange-600">Most played quiz catgeory</div>
+                <div class="text-2xl font-semibold text-black pb-3 mb-5 border-b-4 border-orange-600">Most played quiz category</div>
+                <h2 class="text-2xl mb-5 text-center"><?= $mostPlayed['category'] ?></h2>
                 <div class="overflow-x-auto">
                     <table class="w-full border-collapse bg-white rounded overflow-hidden">
                         <thead class="bg-orange-50">
@@ -103,24 +104,14 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <?php foreach ($statsMostPlayed as $stat): ?>
                             <tr class="hover:bg-orange-100 transition-colors duration-150">
-                                <td class="px-4 py-3 border-b border-gray-300 text-black text-sm">Easy</td>
-                                <td class="px-4 py-3 border-b border-gray-300 text-black text-sm">95</td>
-                                <td class="px-4 py-3 border-b border-gray-300 text-black text-sm">65</td>
-                                <td class="px-4 py-3 border-b border-gray-300 text-black text-sm">82</td>
+                                <td class="px-4 py-3 border-b border-gray-300 text-black text-sm"><?= $stat['difficulty'] ?></td>
+                                <td class="px-4 py-3 border-b border-gray-300 text-black text-sm"><?= round($stat['max_marks'], 2) ?></td>
+                                <td class="px-4 py-3 border-b border-gray-300 text-black text-sm"><?= round($stat['min_marks'], 2) ?></td>
+                                <td class="px-4 py-3 border-b border-gray-300 text-black text-sm"><?= $stat['average_marks'] ?></td>
                             </tr>
-                            <tr class="hover:bg-orange-100 transition-colors duration-150">
-                                <td class="px-4 py-3 border-b border-gray-300 text-black text-sm">Medium</td>
-                                <td class="px-4 py-3 border-b border-gray-300 text-black text-sm">88</td>
-                                <td class="px-4 py-3 border-b border-gray-300 text-black text-sm">52</td>
-                                <td class="px-4 py-3 border-b border-gray-300 text-black text-sm">71</td>
-                            </tr>
-                            <tr class="hover:bg-orange-100 transition-colors duration-150">
-                                <td class="px-4 py-3 text-black text-sm">Hard</td>
-                                <td class="px-4 py-3 text-black text-sm">75</td>
-                                <td class="px-4 py-3 text-black text-sm">35</td>
-                                <td class="px-4 py-3 text-black text-sm">58</td>
-                            </tr>
+                            <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>
@@ -128,7 +119,8 @@
 
             <!-- Second Report Card -->
             <div class=" p-6 rounded-lg hover:shadow-md transition-shadow duration-200">
-                <div class="text-2xl font-semibold text-black pb-3 mb-5 border-b-4 border-orange-600">Least played quiz catgeory</div>
+                <div class="text-2xl font-semibold text-black pb-3 mb-5 border-b-4 border-orange-600">Least played quiz category</div>
+                <h2 class="text-2xl mb-5 text-center"><?= $leastPlayed['category'] ?></h2>
                 <div class="overflow-x-auto">
                     <table class="w-full border-collapse bg-white rounded overflow-hidden">
                         <thead class="bg-orange-50">
@@ -140,24 +132,14 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <?php foreach ($statsLeastPlayed as $stat): ?>
                             <tr class="hover:bg-orange-100 transition-colors duration-150">
-                                <td class="px-4 py-3 border-b border-gray-300 text-black text-sm">Easy</td>
-                                <td class="px-4 py-3 border-b border-gray-300 text-black text-sm">92</td>
-                                <td class="px-4 py-3 border-b border-gray-300 text-black text-sm">68</td>
-                                <td class="px-4 py-3 border-b border-gray-300 text-black text-sm">80</td>
+                                <td class="px-4 py-3 border-b border-gray-300 text-black text-sm"><?= $stat['difficulty'] ?></td>
+                                <td class="px-4 py-3 border-b border-gray-300 text-black text-sm"><?= round($stat['max_marks'], 2) ?></td>
+                                <td class="px-4 py-3 border-b border-gray-300 text-black text-sm"><?= round($stat['min_marks'], 2) ?></td>
+                                <td class="px-4 py-3 border-b border-gray-300 text-black text-sm"><?= $stat['average_marks'] ?></td>
                             </tr>
-                            <tr class="hover:bg-orange-100 transition-colors duration-150">
-                                <td class="px-4 py-3 border-b border-gray-300 text-black text-sm">Medium</td>
-                                <td class="px-4 py-3 border-b border-gray-300 text-black text-sm">85</td>
-                                <td class="px-4 py-3 border-b border-gray-300 text-black text-sm">48</td>
-                                <td class="px-4 py-3 border-b border-gray-300 text-black text-sm">68</td>
-                            </tr>
-                            <tr class="hover:bg-orange-100 transition-colors duration-150">
-                                <td class="px-4 py-3 text-black text-sm">Hard</td>
-                                <td class="px-4 py-3 text-black text-sm">72</td>
-                                <td class="px-4 py-3 text-black text-sm">32</td>
-                                <td class="px-4 py-3 text-black text-sm">55</td>
-                            </tr>
+                            <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>

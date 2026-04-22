@@ -12,7 +12,19 @@ class Admin extends Controller {
     }
 
     public function report() {
-        $this->view("admin/quiz_report");
+        $quizReport = new QuizReport();
+        $mostPlayed = $quizReport->getMostPlayedCategory();
+        $leastPlayed = $quizReport->getLeastPlayedCategory();
+
+        $statsMostPlayed = $quizReport->getStatsForCategory($mostPlayed['category']);
+        $statsLeastPlayed = $quizReport->getStatsForCategory($leastPlayed['category']);
+        
+        $this->view("admin/quiz_report", [
+            'mostPlayed' => $mostPlayed,
+            'leastPlayed' => $leastPlayed,
+            'statsMostPlayed' => $statsMostPlayed,
+            'statsLeastPlayed' => $statsLeastPlayed
+        ]);
     }
 
     public function usermanagement() {
