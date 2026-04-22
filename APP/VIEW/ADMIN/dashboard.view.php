@@ -90,6 +90,53 @@
             <h1 class="text-3xl font-bold mb-4">Admin Dashboard</h1>
             <p class="mb-6">Welcome, <?= Session::get("fullname") ?></p>
 
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                <div class="p-4 bg-white rounded-lg shadow">
+                    <h3 class="text-sm text-gray-500">Total Users</h3>
+                    <p class="text-2xl font-bold"><?= isset($counts['users']) ? $counts['users'] : 0 ?></p>
+                </div>
+                <div class="p-4 bg-white rounded-lg shadow">
+                    <h3 class="text-sm text-gray-500">Total Quizzes</h3>
+                    <p class="text-2xl font-bold"><?= isset($counts['quizzes']) ? $counts['quizzes'] : 0 ?></p>
+                </div>
+                <div class="p-4 bg-white rounded-lg shadow">
+                    <h3 class="text-sm text-gray-500">Total Results</h3>
+                    <p class="text-2xl font-bold"><?= isset($counts['results']) ? $counts['results'] : 0 ?></p>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow p-4">
+                <h2 class="text-xl font-semibold mb-2">Top Students (Leaderboard)</h2>
+                <?php if (!empty($leaderboard)): ?>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full text-left">
+                        <thead>
+                            <tr>
+                                <th class="px-4 py-2">#</th>
+                                <th class="px-4 py-2">Name</th>
+                                <th class="px-4 py-2">Quizzes</th>
+                                <th class="px-4 py-2">Best Score</th>
+                                <th class="px-4 py-2">Avg %</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php $rank = 1; foreach ($leaderboard as $row): ?>
+                                <tr class="border-t">
+                                    <td class="px-4 py-2"><?= $rank ?></td>
+                                    <td class="px-4 py-2"><?= htmlspecialchars($row['user_name']) ?></td>
+                                    <td class="px-4 py-2"><?= $row['total_quizzes'] ?></td>
+                                    <td class="px-4 py-2"><?= $row['best_score'] ?></td>
+                                    <td class="px-4 py-2"><?= $row['avg_percentage'] ?></td>
+                                </tr>
+                            <?php $rank++; endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+                <?php else: ?>
+                    <p class="text-gray-500">No leaderboard data available yet.</p>
+                <?php endif; ?>
+            </div>
+
         </section>
     </main>
 

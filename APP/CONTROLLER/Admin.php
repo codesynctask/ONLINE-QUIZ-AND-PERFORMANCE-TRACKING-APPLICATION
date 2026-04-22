@@ -8,7 +8,35 @@ class Admin extends Controller {
 
     // ROUTING
     public function index() {
-        $this->view("admin/dashboard");
+        // Gather summary stats for dashboard
+        $database = new Database();
+        $db = $database->getConnection();
+
+        $userCount = 0; $quizCount = 0; $resultCount = 0;
+        try {
+            $userCount = (int)($db->query("SELECT COUNT(*) AS cnt FROM users")->fetch()['cnt'] ?? 0);
+        } catch (Exception $e) { $userCount = 0; }
+        try {
+            $quizCount = (int)($db->query("SELECT COUNT(*) AS cnt FROM quiz_data")->fetch()['cnt'] ?? 0);
+        } catch (Exception $e) { $quizCount = 0; }
+        try {
+            $resultCount = (int)($db->query("SELECT COUNT(*) AS cnt FROM results")->fetch()['cnt'] ?? 0);
+        } catch (Exception $e) { $resultCount = 0; }
+
+        $resultsModel = new Results();
+        $leaderboard = [];
+        try {
+            $leaderboard = $resultsModel->getLeaderboard(5);
+        } catch (Exception $e) { $leaderboard = []; }
+
+        $this->view("admin/dashboard", [
+            'counts' => [
+                'users' => $userCount,
+                'quizzes' => $quizCount,
+                'results' => $resultCount
+            ],
+            'leaderboard' => $leaderboard
+        ]);
     }
 
     public function report() {
