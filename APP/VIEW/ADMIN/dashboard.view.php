@@ -108,32 +108,76 @@
             <div class="bg-white rounded-lg shadow p-4">
                 <h2 class="text-xl font-semibold mb-2">Top Students (Leaderboard)</h2>
                 <?php if (!empty($leaderboard)): ?>
-                <div class="overflow-x-auto">
-                    <table class="min-w-full text-left">
+                <div class="w-full overflow-x-auto rounded-xl shadow-md p-4">
+                    <table class="w-full m-auto text-left border-collapse">
                         <thead>
-                            <tr>
-                                <th class="px-4 py-2">#</th>
-                                <th class="px-4 py-2">Name</th>
-                                <th class="px-4 py-2">Quizzes</th>
-                                <th class="px-4 py-2">Best Score</th>
-                                <th class="px-4 py-2">Avg %</th>
+                            <tr class="bg-black text-white text-center">
+                                <th class="py-3 px-4">Rank</th>
+                                <th class="py-3 px-4 text-left">Student Name</th>
+                                <th class="py-3 px-4">Quizzes Taken</th>
+                                <th class="py-3 px-4">Best Score</th>
+                                <th class="py-3 px-4">Avg Percentage</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <?php $rank = 1; foreach ($leaderboard as $row): ?>
-                                <tr class="border-t">
-                                    <td class="px-4 py-2"><?= $rank ?></td>
-                                    <td class="px-4 py-2"><?= htmlspecialchars($row['user_name']) ?></td>
-                                    <td class="px-4 py-2"><?= $row['total_quizzes'] ?></td>
-                                    <td class="px-4 py-2"><?= $row['best_score'] ?></td>
-                                    <td class="px-4 py-2"><?= $row['avg_percentage'] ?></td>
-                                </tr>
-                            <?php $rank++; endforeach; ?>
+                        <tbody class="text-[clamp(1rem,1.5vw,1.3rem)]">
+                            
+                            <?php
+                                $prev_avg = null;
+                                $prev_rank = 0;
+                            ?>
+
+                            <?php foreach ($leaderboard as $index => $row): ?>
+                            <?php
+                                $position = $index + 1;
+                                $avg = isset($row['avg_percentage']) ? (float)$row['avg_percentage'] : null;
+
+                                // Tie ranking logic
+                                if ($prev_avg !== null && $avg === $prev_avg) {
+                                    $display_rank = $prev_rank;
+                                } else {
+                                    $display_rank = $position;
+                                }
+
+                                // Medal logic
+                                $medal = match($display_rank) {
+                                    1 => "🥇",
+                                    2 => "🥈",
+                                    3 => "🥉",
+                                    default => $display_rank
+                                };
+
+                                // Row color
+                                $rowClass = match($display_rank) {
+                                    1 => "bg-green-300 font-semibold",
+                                    2 => "bg-green-200 font-semibold",
+                                    3 => "bg-green-100 font-semibold",
+                                    default => "bg-white hover:bg-gray-50"
+                                };
+
+                                $prev_avg = $avg;
+                                $prev_rank = $display_rank;
+                            ?>
+
+                            <tr class="<?= $rowClass ?> border-b text-center transition">
+                                <td class="py-3 px-4"><?= $medal ?></td>
+                                <td class="py-3 px-4 text-left"><?= htmlspecialchars($row['user_name']) ?></td>
+                                <td class="py-3 px-4"><?= $row['total_quizzes'] ?></td>
+                                <td class="py-3 px-4"><?= $row['best_score'] ?></td>
+                                <td class="py-3 px-4"><?= $row['avg_percentage'] ?>%</td>
+                            </tr>
+
+                            <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>
+
                 <?php else: ?>
-                    <p class="text-gray-500">No leaderboard data available yet.</p>
+                <div class="flex flex-col items-center gap-3 mt-10 text-gray-400">
+                    <i class="ri-bar-chart-fill text-6xl"></i>
+                    <p class="text-lg font-medium">
+                        No leaderboard data available yet.
+                    </p>
+                </div>
                 <?php endif; ?>
             </div>
 

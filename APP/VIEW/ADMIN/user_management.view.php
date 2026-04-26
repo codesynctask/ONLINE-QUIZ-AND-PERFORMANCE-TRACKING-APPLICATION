@@ -95,10 +95,20 @@
 
             <!-- Badges to switch panels -->
             <div class="mb-6">
-                <div class="inline-flex rounded-lg bg-gray-100 p-1 gap-3">
-                    <button id="badge-students"
-                        class="px-4 py-2 rounded-lg bg-white text-sm font-medium">Students</button>
-                    <button id="badge-faculty" class="px-4 py-2 bg-white rounded-lg text-sm font-medium">Faculty</button>
+                <div class="inline-flex rounded-xl bg-gray-100 p-1 gap-2 shadow-sm">
+
+                    <button
+                        class="tab-btn px-5 py-2 rounded-lg text-sm font-medium transition-all duration-200 bg-orange-600 text-white"
+                        data-target="#panel-students">
+                        Students
+                    </button>
+
+                    <button
+                        class="tab-btn px-5 py-2 rounded-lg text-sm font-medium transition-all duration-200 text-gray-600 hover:bg-gray-200"
+                        data-target="#panel-faculty">
+                        Faculty
+                    </button>
+
                 </div>
             </div>
 
@@ -106,20 +116,26 @@
             <div id="panel-students" class="bg-white shadow rounded p-4 mb-6">
                 <h2 class="text-xl font-semibold mb-2">Students</h2>
                 <div class="overflow-x-auto">
-                    <table id="students-table" class="min-w-full divide-y divide-gray-200">
-                        <thead class="bg-gray-50">
-                            <tr>
-                                <th class="px-4 py-2 text-left text-sm font-medium">#</th>
-                                <th class="px-4 py-2 text-left text-sm font-medium">Full Name</th>
-                                <th class="px-4 py-2 text-left text-sm font-medium">username</th>
-                                <th class="px-4 py-2 text-left text-sm font-medium">password</th>
-                                <th class="px-4 py-2 text-left text-sm font-medium">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody class="bg-white" id="students-tbody">
-                            <!-- rows populated by AJAX -->
-                        </tbody>
-                    </table>
+                    <div class="w-full overflow-x-auto rounded-2xl shadow-md p-4">
+
+                        <table id="students-table" class="w-full border-collapse text-left">
+
+                            <thead>
+                                <tr class="bg-black text-white text-center">
+                                    <th class="py-3 px-4">#</th>
+                                    <th class="py-3 px-4 text-left">Full Name</th>
+                                    <th class="py-3 px-4 text-left">Username</th>
+                                    <th class="py-3 px-4 text-left">Password</th>
+                                    <th class="py-3 px-4">Actions</th>
+                                </tr>
+                            </thead>
+
+                            <tbody class="bg-white text-[clamp(0.95rem,1.2vw,1.1rem)]" id="students-tbody">
+                                <!-- AJAX rows -->
+                            </tbody>
+
+                        </table>
+                    </div>
                 </div>
             </div>
 
@@ -134,7 +150,8 @@
                         class="border-2 border-orange-600 px-3 py-2 rounded" />
                     <input type="text" name="password" id="faculty-password" placeholder="Password" required
                         class="border-2 border-orange-600 px-3 py-2 rounded" />
-                    <select name="category" id="faculty-category" class="border-2 border-orange-600 px-8 py-4 active:border-orange-600  focus:border-orange-600 py-2 px-4 rounded-lg  w-full flex justify-center items-center">
+                    <select name="category" id="faculty-category"
+                        class="border-2 border-orange-600 px-8 py-4 active:border-orange-600  focus:border-orange-600 py-2 px-4 rounded-lg  w-full flex justify-center items-center">
                         <option value="any">Any Category</option>
                         <option value="9">General Knowledge</option>
                         <option value="10">Entertainment: Books</option>
@@ -167,15 +184,15 @@
                 </form>
 
                 <div class="overflow-x-auto border-black">
-                    <table id="faculty-table" class="min-w-full divide-y divide-gray-200">
-                        <thead class="bg-gray-50">
+                    <table id="faculty-table" class=" w-full border-collapse text-center">
+                        <thead class="bg-black text-white text-center">
                             <tr>
-                                <th class="px-4 py-2 text-left text-sm font-bold">#</th>
-                                <th class="px-4 py-2 text-left text-sm font-bold">Full Name</th>
-                                <th class="px-4 py-2 text-left text-sm font-bold">Username</th>
-                                <th class="px-4 py-2 text-left text-sm font-bold">Password</th>
-                                <th class="px-4 py-2 text-left text-sm font-bold">Category</th>
-                                <th class="px-4 py-2 text-left text-sm font-bold">Actions</th>
+                                <th class="px-4 py-2 text-left text-sm font-bold text-center">#</th>
+                                <th class="px-4 py-2 text-left text-sm font-bold text-center">Full Name</th>
+                                <th class="px-4 py-2 text-left text-sm font-bold text-center">Username</th>
+                                <th class="px-4 py-2 text-left text-sm font-bold text-center">Password</th>
+                                <th class="px-4 py-2 text-left text-sm font-bold text-center">Category</th>
+                                <th class="px-4 py-2 text-left text-sm font-bold text-center">Actions</th>
                             </tr>
                         </thead>
                         <tbody class="bg-white" id="faculty-tbody">
@@ -191,73 +208,73 @@
     <script src="https://code.jquery.com/jquery-4.0.0.js"></script>
     <script src="<?= ROOT ?>\PUBLIC\ASSETS\JS\main.js"></script>
     <script>
-    $(function () {
+        $(function () {
 
-        // ============================= AJAX DATA
-        const API_BASE = '<?= ROOT ?>/public/Admin/api';
+            // ============================= AJAX DATA
+            const API_BASE = '<?= ROOT ?>/public/Admin/api';
 
-        function renderStudentRow(i, s) {
-            return `
-                    <tr data-id="${s.user_id}">
+            function renderStudentRow(i, s) {
+                return `
+                    <tr data-id="${s.user_id}" class="hover:shadow-lg">
                         <td class="px-4 py-2">${i}</td>
                         <td class="px-4 py-2">${s.fullname || 'N/A'}</td>
                         <td class="px-4 py-2">${s.username || 'N/A'}</td>
                         <td class="px-4 py-2">${s.password || 'N/A'}</td>
                         <td class="px-4 py-2">
-                            <button class="btn btn-danger btn-sm delete-student" data-id="${s.user_id}">Delete</button>
+                            <button class="m-auto w-full hover:bg-orange-600 hover:text-white btn btn-danger btn-sm delete-student" data-id="${s.user_id}">Delete</button>
                         </td>
                     </tr>
                 `;
-        }
+            }
 
-        function renderFacultyRow(i, f) {
-            return `
-                    <tr data-id="${f.user_id}">
+            function renderFacultyRow(i, f) {
+                return `
+                    <tr data-id="${f.user_id}" class="hover:shadow-lg">
                         <td class="px-4 py-2">${i}</td>
                         <td class="px-4 py-2">${f.fullname || 'N/A'}</td>
                         <td class="px-4 py-2">${f.username || 'N/A'}</td>
                         <td class="px-4 py-2">${f.password || 'N/A'}</td>
                         <td class="px-4 py-2">${f.category || 'N/A'}</td>
                         <td class="px-4 py-2">
-                            <button class="btn btn-danger btn-sm delete-faculty" data-id="${f.user_id}">Delete</button>
+                            <button class="m-auto w-full hover:bg-orange-600 hover:text-white btn btn-danger btn-sm delete-faculty" data-id="${f.user_id}">Delete</button>
                         </td>
                     </tr>
                 `;
-        }
+            }
 
-        function loadStudents() {
-            $('#students-tbody').html('<tr><td colspan="5" class="p-4">Loading...</td></tr>');
-            $.get(API_BASE + '/students')
-                .done(function (res) {
-                    const list = Array.isArray(res) ? res : [];
-                    if (!list.length) {
-                        $('#students-tbody').html('<tr><td colspan="5" class="p-4 text-center">No students found</td></tr>');
-                        return;
-                    }
-                    const html = list.map((s, idx) => renderStudentRow(idx + 1, s)).join('');
-                    $('#students-tbody').html(html);
-                })
-                .fail(function () {
-                    $('#students-tbody').html('<tr><td colspan="5" class="p-4 text-red-600">Failed to load students</td></tr>');
-                });
-        }
+            function loadStudents() {
+                $('#students-tbody').html('<tr><td colspan="5" class="p-4">Loading...</td></tr>');
+                $.get(API_BASE + '/students')
+                    .done(function (res) {
+                        const list = Array.isArray(res) ? res : [];
+                        if (!list.length) {
+                            $('#students-tbody').html('<tr><td colspan="5" class="p-4 text-center">No students found</td></tr>');
+                            return;
+                        }
+                        const html = list.map((s, idx) => renderStudentRow(idx + 1, s)).join('');
+                        $('#students-tbody').html(html);
+                    })
+                    .fail(function () {
+                        $('#students-tbody').html('<tr><td colspan="5" class="p-4 text-red-600">Failed to load students</td></tr>');
+                    });
+            }
 
-        function loadFaculty() {
-            $('#faculty-tbody').html('<tr><td colspan="6" class="p-4">Loading...</td></tr>');
-            $.get(API_BASE + '/faculty')
-                .done(function (res) {
-                    const list = Array.isArray(res) ? res : [];
-                    if (!list.length) {
-                        $('#faculty-tbody').html('<tr><td colspan="6" class="p-4">No faculty found</td></tr>');
-                        return;
-                    }
-                    const html = list.map((f, idx) => renderFacultyRow(idx + 1, f)).join('');
-                    $('#faculty-tbody').html(html);
-                })
-                .fail(function () {
-                    $('#faculty-tbody').html('<tr><td colspan="6" class="p-4 text-red-600">Failed to load faculty</td></tr>');
-                });
-        }
+            function loadFaculty() {
+                $('#faculty-tbody').html('<tr><td colspan="6" class="p-4">Loading...</td></tr>');
+                $.get(API_BASE + '/faculty')
+                    .done(function (res) {
+                        const list = Array.isArray(res) ? res : [];
+                        if (!list.length) {
+                            $('#faculty-tbody').html('<tr><td colspan="6" class="p-4">No faculty found</td></tr>');
+                            return;
+                        }
+                        const html = list.map((f, idx) => renderFacultyRow(idx + 1, f)).join('');
+                        $('#faculty-tbody').html(html);
+                    })
+                    .fail(function () {
+                        $('#faculty-tbody').html('<tr><td colspan="6" class="p-4 text-red-600">Failed to load faculty</td></tr>');
+                    });
+            }
 
 
             // initial load
@@ -265,19 +282,23 @@
             loadFaculty();
 
             // badge switching
-            $('#badge-students').on('click', function () {
-                $('#panel-faculty').addClass('hidden');
-                $('#panel-students').removeClass('hidden');
-                $(this).addClass('bg-orange-600 text-white');
-                $('#badge-faculty').removeClass('bg-orange-600 text-white');
-            });
-            $('#badge-faculty').on('click', function () {
-                $('#panel-students').addClass('hidden');
-                $('#panel-faculty').removeClass('hidden');
-                $(this).addClass('bg-orange-600 text-white');
-                $('#badge-students').removeClass('bg-orange-600 text-white');
+            $('.tab-btn').on('click', function () {
+
+                $('.tab-btn')
+                    .removeClass('bg-orange-600 text-white')
+                    .addClass('text-gray-600');
+
+                $(this)
+                    .addClass('bg-orange-600 text-white')
+                    .removeClass('text-gray-600');
+
+                $('#panel-students, #panel-faculty').addClass('hidden');
+
+                const target = $(this).data('target');
+                $(target).removeClass('hidden');
             });
 
+            
             // delegate deletes
             $(document).on('click', '.delete-student', function () {
                 const id = $(this).data('id');
@@ -309,12 +330,12 @@
                     method: 'POST',
                     contentType: 'application/json',
                     data: JSON.stringify(payload),
-                    success: function () { 
-                        $('#faculty-name,#faculty-username,#faculty-password').val(''); 
+                    success: function () {
+                        $('#faculty-name,#faculty-username,#faculty-password').val('');
                         alert('Faculty created successfully');
-                        loadFaculty(); 
+                        loadFaculty();
                     },
-                    error: function (xhr) { 
+                    error: function (xhr) {
                         alert('Failed to create faculty: ' + (xhr.responseJSON?.message || 'Unknown error'));
                     }
                 });
@@ -322,7 +343,7 @@
 
 
 
-    });
+        });
     </script>
 </body>
 
