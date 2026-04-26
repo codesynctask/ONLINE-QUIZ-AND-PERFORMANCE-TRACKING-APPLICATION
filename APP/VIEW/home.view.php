@@ -115,7 +115,7 @@
                 <h1 class="leading-none my-8 text-[clamp(1.8em,3.8vw,5.5vw)] font-bold">Where knowledge meets <span class="text-orange-600 act-cursive text-[clamp(2.5em,7vw,9vw)]">measurable</span> progress</h1>
                 <p>Quiz is a structured online quiz platform built for academic institutions. Students take quizzes, track performance, and compete on a shared leaderboard — all in one secure, role-based system.</p>
             </div>
-            <div class="h-[60vh] w-full md:w-[45%]  border-black border-dashed bg-white"></div>
+            <img src="<?= ROOT ?>/public/assets/imgs/hero-img.png" alt="" class=" w-full md:w-[45%] ">
         </section>
 
         <!-- STATS -->

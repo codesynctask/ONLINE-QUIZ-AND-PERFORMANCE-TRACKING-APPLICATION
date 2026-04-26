@@ -95,7 +95,7 @@
         <div class="w-full max-w-4xl">
             
             <!-- Profile Header Card -->
-            <div class="border-2 border-orange-600 rounded-lg shadow-lg p-8 mb-8">
+            <div class="border-2  rounded-lg shadow-lg p-8 mb-8">
                 <div class="flex flex-col md:flex-row items-center gap-8">
                     
                     <!-- Profile Avatar -->
@@ -148,7 +148,7 @@
                 <div class="bg-white border-2 border-gray-200 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
                     <div class="flex items-center justify-between">
                         <div>
-                            <p class="text-gray-500 text-sm font-semibold uppercase">Average Score</p>
+                            <p class="text-gray-500 text-sm font-semibold uppercase">Average Score (in %)</p>
                             <p class="text-4xl font-bold text-blue-600 mt-2"><?= isset($avg_percentage) ? $avg_percentage : '0' ?></p>
                         </div>
                         <i class="ri-bar-chart-fill text-5xl text-blue-200"></i>

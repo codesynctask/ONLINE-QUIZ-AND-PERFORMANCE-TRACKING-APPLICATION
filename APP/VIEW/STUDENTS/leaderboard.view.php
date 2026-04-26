@@ -96,7 +96,7 @@
         <div class="w-full max-w-4xl overflow-x-auto rounded-xl shadow-md">
             <table class="w-full text-left border-collapse">
                 <thead>
-                    <tr class="bg-orange-600 text-white text-center">
+                    <tr class="bg-black text-white text-center">
                         <th class="py-3 px-4">Rank</th>
                         <th class="py-3 px-4 text-left">Student</th>
                         <th class="py-3 px-4">Quizzes Taken</th>
