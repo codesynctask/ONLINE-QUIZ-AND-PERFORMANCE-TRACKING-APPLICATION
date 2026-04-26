@@ -277,6 +277,10 @@
             </div>
         </div>
     </footer>
+
+
+    <script src="https://code.jquery.com/jquery-4.0.0.js"></script>;
+    <script src="<?= ROOT ?>\PUBLIC\ASSETS\JS\main.js"></script>
 </body>
 
 </html>

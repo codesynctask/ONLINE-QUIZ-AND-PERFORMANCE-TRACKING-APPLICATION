@@ -2,8 +2,8 @@
 
 class Admin extends Controller {
     public function __construct() {
-        // AuthMiddleware::handle();
-        // Authorization::handle();
+        AuthMiddleware::handle();
+        Authorization::handle();
     }
 
     // ROUTING
